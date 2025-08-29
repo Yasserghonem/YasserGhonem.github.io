@@ -13,7 +13,7 @@
 
     <!-- CSS STYLES EMBEDDED -->
     <style>
-        /* General Styles and Variables */
+        /* General Styles and NEW COLOR PALETTE */
         * {
             margin: 0;
             padding: 0;
@@ -26,11 +26,21 @@
         }
 
         :root {
-            --bg-color: #1f242d;
-            --second-bg-color: #323946;
-            --text-color: #fff;
-            --main-color: #0ef;
-            --main-color-shadow: rgba(0, 239, 255, 0.6); /* Added for glowing effect */
+            --bg-color: #111827; /* Dark Navy */
+            --second-bg-color: #1F2937; /* Lighter Navy */
+            --text-color: #F3F4F6; /* Off-white */
+            --main-color: #FBBF24; /* Amber/Gold */
+            --main-color-shadow: rgba(251, 191, 36, 0.5); /* Amber shadow */
+            --gradient-end-color: #F97316; /* Vibrant Orange for gradient */
+        }
+
+        /* NEW: Gradient Text Style */
+        .gradient-text {
+            background: linear-gradient(45deg, var(--main-color), var(--gradient-end-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent; /* Fallback for older browsers */
         }
 
         html {
@@ -51,11 +61,7 @@
         .heading {
             text-align: center;
             font-size: 4.5rem;
-            margin-bottom: 4rem; /* Increased margin */
-        }
-
-        .heading span {
-            color: var(--main-color);
+            margin-bottom: 4rem;
         }
 
         .btn {
@@ -73,7 +79,7 @@
 
         .btn:hover {
             box-shadow: none;
-            transform: translateY(-5px); /* Added subtle lift effect */
+            transform: translateY(-5px);
         }
 
         /* Header */
@@ -83,15 +89,14 @@
             left: 0;
             width: 100%;
             padding: 2rem 9%;
-            background: transparent; /* Changed to transparent initially */
+            background: transparent;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            transition: background-color .4s ease, padding .4s ease; /* Smooth transition */
+            transition: background-color .4s ease, padding .4s ease;
         }
 
-        /* NEW: Sticky header style */
         .header.sticky {
             background: var(--bg-color);
             border-bottom: 1px solid var(--second-bg-color);
@@ -104,11 +109,6 @@
             font-weight: 700;
             cursor: default;
         }
-        /* NEW: Added style for logo accent */
-        .logo span {
-            color: var(--main-color);
-        }
-
 
         .navbar a {
             font-size: 1.7rem;
@@ -149,10 +149,6 @@
             margin-bottom: 2rem;
         }
 
-        span.multiple-text {
-            color: var(--main-color);
-        }
-
         .social-media a {
             display: inline-flex;
             justify-content: center;
@@ -172,7 +168,7 @@
             background: var(--main-color);
             color: var(--second-bg-color);
             box-shadow: 0 0 1rem var(--main-color);
-            transform: translateY(-5px); /* Added subtle lift effect */
+            transform: translateY(-5px);
         }
 
         /* About Section */
@@ -193,11 +189,9 @@
             border: .5rem solid var(--main-color);
             overflow: hidden;
             flex-shrink: 0;
-            /* NEW: Pulsing shadow effect */
             animation: pulse-shadow 2s infinite;
         }
 
-        /* NEW: Keyframes for the pulsing animation */
         @keyframes pulse-shadow {
             0% {
                 box-shadow: 0 0 1rem var(--main-color);
@@ -209,7 +203,6 @@
                 box-shadow: 0 0 1rem var(--main-color);
             }
         }
-
 
         .about-img img {
             width: 100%;
@@ -298,7 +291,7 @@
         .skill-tag:hover {
             background-color: var(--main-color);
             color: var(--second-bg-color);
-            transform: scale(1.05); /* Added scale on hover */
+            transform: scale(1.05);
             cursor: default;
         }
         
@@ -381,13 +374,12 @@
             overflow: hidden;
             display: flex;
             box-shadow: 0 0 1rem rgba(0,0,0, .5);
-            transition: transform 0.4s ease; /* Added transition */
+            transition: transform 0.4s ease;
         }
         
         .project-card:hover {
-            transform: scale(1.03); /* Card scales on hover */
+            transform: scale(1.03);
         }
-
 
         .project-card img {
             width: 100%;
@@ -411,12 +403,12 @@
             flex-direction: column;
             text-align: center;
             padding: 0 4rem;
-            opacity: 0; /* Initially hidden */
+            opacity: 0;
             transition: .5s ease;
         }
 
         .project-card:hover .project-layer {
-            opacity: 1; /* Fade in on hover */
+            opacity: 1;
         }
 
         .project-layer h4 {
@@ -446,7 +438,6 @@
             transition: transform .5s ease .2s;
         }
         
-        /* NEW: Animate content inside project layer */
         .project-card:hover .project-layer h4,
         .project-card:hover .project-layer p,
         .project-card:hover .project-layer a {
@@ -523,13 +514,12 @@
 
         @media (max-width: 768px) {
             .header {
-                background: var(--bg-color); /* Always show background on mobile */
+                background: var(--bg-color);
             }
             #menu-icon {
-                display: block; /* Placeholder for potential mobile menu */
+                display: block;
             }
             .navbar {
-                 /* This would need a menu toggle for a real mobile menu */
                 width: 100%;
                 display: flex;
                 justify-content: space-around;
@@ -560,7 +550,7 @@
 
     <!-- Header & Navigation -->
     <header class="header">
-        <a href="#" class="logo">Yasser <span>Ghonem.</span></a>
+        <a href="#" class="logo">Yasser <span class="gradient-text">Ghonem.</span></a>
         <nav class="navbar">
             <a href="#home" class="active">Home</a>
             <a href="#about">About</a>
@@ -577,7 +567,7 @@
         <div class="home-content">
             <h3>Hello, It's Me</h3>
             <h1>Yasser Ghonem</h1>
-            <h3>And I'm a <span class="multiple-text"></span></h3>
+            <h3>And I'm a <span class="multiple-text gradient-text"></span></h3>
             <p>I transform raw data into strategic insights that drive business success.</p>
             <div class="social-media">
                 <a href="https://www.linkedin.com/in/yasser-ghonem-3b7601262" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
@@ -591,21 +581,20 @@
     <!-- About Me Section -->
     <section class="about" id="about">
         <div class="about-content">
-            <h2 class="heading">About <span>Me</span></h2>
+            <h2 class="heading">About <span class="gradient-text">Me</span></h2>
             <h3>Data Engineer & Business Analyst</h3>
             <p>I’m a passionate and detail-oriented Data Engineer with strong experience across the full data lifecycle — from extraction and cleaning, to transformation, warehousing, and building interactive dashboards. I have worked with SQL, Python, SSMS, SSIS, Azure Cloud Services, and Power BI, delivering real-world projects that bridge Data Engineering and Business Intelligence.</p>
             <p>My portfolio includes end-to-end solutions such as HR, Sales, IMDB Movies, and Suicide Analysis Dashboards, as well as automation pipelines that process and store data efficiently. I’ve also developed machine learning models for predictive analysis.</p>
             <p>I blend the precision of data engineering with the clarity of storytelling — delivering pipelines and dashboards that not only provide actionable insights, but also help teams save money, cut unnecessary costs, and make smarter, faster decisions. My competitive edge lies in my ability to handle projects from raw data to impactful insights — ensuring that stakeholders receive accurate data presented in clear, engaging visuals that drive real results.</p>
         </div>
         <div class="about-img">
-            <!-- Replace with your photo -->
             <img src="WhatsApp Image 2025-08-11 at 14.38.56_c94051c2.jpg" alt="Yasser Ghonem">
         </div>
     </section>
 
     <!-- Education Section -->
     <section class="education" id="education">
-        <h2 class="heading"><span>Education</span></h2>
+        <h2 class="heading"><span class="gradient-text">Education</span></h2>
         <div class="education-container">
             <div class="education-box">
                 <i class="fa-solid fa-graduation-cap"></i>
@@ -637,7 +626,7 @@
     
     <!-- Skills Section -->
     <section class="skills" id="skills">
-        <h2 class="heading">My <span>Skills</span></h2>
+        <h2 class="heading">My <span class="gradient-text">Skills</span></h2>
         <div class="skills-container">
             <div class="skill-tag">SQL</div>
             <div class="skill-tag">Excel</div>
@@ -657,7 +646,7 @@
 
     <!-- Offered Services Section -->
     <section class="services" id="services">
-        <h2 class="heading">Offered <span>Services</span></h2>
+        <h2 class="heading">Offered <span class="gradient-text">Services</span></h2>
         <div class="services-container">
             <div class="services-box">
                 <i class="fa-solid fa-cogs"></i>
@@ -686,7 +675,7 @@
 
     <!-- Projects (Previous Work) Section -->
     <section class="projects" id="projects">
-        <h2 class="heading">Latest <span>Projects</span></h2>
+        <h2 class="heading">Latest <span class="gradient-text">Projects</span></h2>
         <div class="projects-container">
             <div class="project-card">
                 <img src="CRM.jpg" alt="CRM Project">
@@ -742,7 +731,7 @@
     <!-- Call to Action & Contact Information -->
     <footer class="footer" id="contact">
         <div class="footer-content">
-            <h2 class="heading">Let's build something great <span>together!</span></h2>
+            <h2 class="heading">Let's build something great <span class="gradient-text">together!</span></h2>
             <p>Ready to turn your data into a valuable asset? Let's talk.</p>
             <div class="contact-info">
                 <div class="info-item">
@@ -767,12 +756,12 @@
     <!-- Typed.js for the typing effect -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     
-    <!-- NEW: ScrollReveal.js for animations on scroll -->
+    <!-- ScrollReveal.js for animations on scroll -->
     <script src="https://unpkg.com/scrollreveal"></script>
 
     <!-- Custom JS -->
     <script>
-        // Typing animation (unchanged)
+        // Typing animation
         var typed = new Typed('.multiple-text', {
             strings: ['Data Engineer', 'Business Analyst', 'Power BI Developer'],
             typeSpeed: 70,
@@ -781,7 +770,7 @@
             loop: true
         });
 
-        // Active link switching & Sticky header (IMPROVED)
+        // Active link switching & Sticky header
         let sections = document.querySelectorAll('section');
         let navLinks = document.querySelectorAll('header nav a');
         let header = document.querySelector('.header');
@@ -806,7 +795,7 @@
             });
         };
 
-        // NEW: Scroll Reveal Animations
+        // Scroll Reveal Animations
         ScrollReveal({
             reset: true,
             distance: '80px',
