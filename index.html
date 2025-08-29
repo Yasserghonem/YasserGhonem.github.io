@@ -30,6 +30,7 @@
             --second-bg-color: #323946;
             --text-color: #fff;
             --main-color: #0ef;
+            --main-color-shadow: rgba(0, 239, 255, 0.6); /* Added for glowing effect */
         }
 
         html {
@@ -50,7 +51,7 @@
         .heading {
             text-align: center;
             font-size: 4.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem; /* Increased margin */
         }
 
         .heading span {
@@ -72,6 +73,7 @@
 
         .btn:hover {
             box-shadow: none;
+            transform: translateY(-5px); /* Added subtle lift effect */
         }
 
         /* Header */
@@ -81,12 +83,19 @@
             left: 0;
             width: 100%;
             padding: 2rem 9%;
-            background: var(--bg-color);
+            background: transparent; /* Changed to transparent initially */
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            transition: background-color .4s ease, padding .4s ease; /* Smooth transition */
+        }
+
+        /* NEW: Sticky header style */
+        .header.sticky {
+            background: var(--bg-color);
+            border-bottom: 1px solid var(--second-bg-color);
+            box-shadow: 0 .2rem .5rem rgba(0,0,0,0.1);
         }
 
         .logo {
@@ -95,6 +104,11 @@
             font-weight: 700;
             cursor: default;
         }
+        /* NEW: Added style for logo accent */
+        .logo span {
+            color: var(--main-color);
+        }
+
 
         .navbar a {
             font-size: 1.7rem;
@@ -158,6 +172,7 @@
             background: var(--main-color);
             color: var(--second-bg-color);
             box-shadow: 0 0 1rem var(--main-color);
+            transform: translateY(-5px); /* Added subtle lift effect */
         }
 
         /* About Section */
@@ -177,9 +192,24 @@
             border-radius: 50%;
             border: .5rem solid var(--main-color);
             overflow: hidden;
-            box-shadow: 0 0 2rem var(--main-color);
             flex-shrink: 0;
+            /* NEW: Pulsing shadow effect */
+            animation: pulse-shadow 2s infinite;
         }
+
+        /* NEW: Keyframes for the pulsing animation */
+        @keyframes pulse-shadow {
+            0% {
+                box-shadow: 0 0 1rem var(--main-color);
+            }
+            50% {
+                box-shadow: 0 0 2.5rem var(--main-color-shadow);
+            }
+            100% {
+                box-shadow: 0 0 1rem var(--main-color);
+            }
+        }
+
 
         .about-img img {
             width: 100%;
@@ -227,6 +257,7 @@
         .education-box:hover {
             border-color: var(--main-color);
             transform: scale(1.02);
+            box-shadow: 0 0 1.5rem var(--main-color-shadow);
         }
 
         .education-box i {
@@ -267,6 +298,7 @@
         .skill-tag:hover {
             background-color: var(--main-color);
             color: var(--second-bg-color);
+            transform: scale(1.05); /* Added scale on hover */
             cursor: default;
         }
         
@@ -295,6 +327,7 @@
         .services-box:hover {
             border-color: var(--main-color);
             transform: translateY(-1rem);
+            box-shadow: 0 0 2rem var(--main-color-shadow);
         }
 
         .services-box i {
@@ -348,7 +381,13 @@
             overflow: hidden;
             display: flex;
             box-shadow: 0 0 1rem rgba(0,0,0, .5);
+            transition: transform 0.4s ease; /* Added transition */
         }
+        
+        .project-card:hover {
+            transform: scale(1.03); /* Card scales on hover */
+        }
+
 
         .project-card img {
             width: 100%;
@@ -372,23 +411,27 @@
             flex-direction: column;
             text-align: center;
             padding: 0 4rem;
-            transform: translateY(100%);
+            opacity: 0; /* Initially hidden */
             transition: .5s ease;
         }
 
         .project-card:hover .project-layer {
-            transform: translateY(0);
+            opacity: 1; /* Fade in on hover */
         }
 
         .project-layer h4 {
             font-size: 3rem;
             color: var(--bg-color);
+            transform: translateY(2rem);
+            transition: transform .5s ease;
         }
 
         .project-layer p {
             font-size: 1.6rem;
             margin: .3rem 0 1rem;
             color: #eee;
+            transform: translateY(2rem);
+            transition: transform .5s ease .1s;
         }
 
         .project-layer a {
@@ -399,6 +442,15 @@
             height: 5rem;
             background: var(--text-color);
             border-radius: 50%;
+            transform: translateY(2rem);
+            transition: transform .5s ease .2s;
+        }
+        
+        /* NEW: Animate content inside project layer */
+        .project-card:hover .project-layer h4,
+        .project-card:hover .project-layer p,
+        .project-card:hover .project-layer a {
+            transform: translateY(0);
         }
 
         .project-layer a i {
@@ -471,15 +523,17 @@
 
         @media (max-width: 768px) {
             .header {
-                flex-direction: column;
-                align-items: center;
+                background: var(--bg-color); /* Always show background on mobile */
+            }
+            #menu-icon {
+                display: block; /* Placeholder for potential mobile menu */
             }
             .navbar {
+                 /* This would need a menu toggle for a real mobile menu */
                 width: 100%;
                 display: flex;
                 justify-content: space-around;
                 margin-top: 1rem;
-                background: var(--second-bg-color);
                 padding: 1rem 0;
                 border-radius: .5rem;
             }
@@ -506,7 +560,7 @@
 
     <!-- Header & Navigation -->
     <header class="header">
-        <a href="#" class="logo">Yasser Ghonem.</a>
+        <a href="#" class="logo">Yasser <span>Ghonem.</span></a>
         <nav class="navbar">
             <a href="#home" class="active">Home</a>
             <a href="#about">About</a>
@@ -538,7 +592,7 @@
     <section class="about" id="about">
         <div class="about-content">
             <h2 class="heading">About <span>Me</span></h2>
-            <h3>Data Engineer & BI Analyst</h3>
+            <h3>Data Engineer & Business Analyst</h3>
             <p>I’m a passionate and detail-oriented Data Engineer with strong experience across the full data lifecycle — from extraction and cleaning, to transformation, warehousing, and building interactive dashboards. I have worked with SQL, Python, SSMS, SSIS, Azure Cloud Services, and Power BI, delivering real-world projects that bridge Data Engineering and Business Intelligence.</p>
             <p>My portfolio includes end-to-end solutions such as HR, Sales, IMDB Movies, and Suicide Analysis Dashboards, as well as automation pipelines that process and store data efficiently. I’ve also developed machine learning models for predictive analysis.</p>
             <p>I blend the precision of data engineering with the clarity of storytelling — delivering pipelines and dashboards that not only provide actionable insights, but also help teams save money, cut unnecessary costs, and make smarter, faster decisions. My competitive edge lies in my ability to handle projects from raw data to impactful insights — ensuring that stakeholders receive accurate data presented in clear, engaging visuals that drive real results.</p>
@@ -566,7 +620,7 @@
             <div class="education-box">
                 <i class="fa-solid fa-certificate"></i>
                 <h3>Associate & Intermediate Data Engineer</h3>
-                <p>From: Data Camp</p>
+                <p>From: DataCamp</p>
             </div>
              <div class="education-box">
                 <i class="fa-solid fa-certificate"></i>
@@ -575,8 +629,8 @@
             </div>
             <div class="education-box">
                 <i class="fa-solid fa-certificate"></i>
-                <h3>Data Engineer</h3>
-                <p>From: Dotpy</p>
+                <h3>Power Bi Developer</h3>
+                <p>From: CodeAlpha</p>
             </div>
         </div>
     </section>
@@ -586,6 +640,7 @@
         <h2 class="heading">My <span>Skills</span></h2>
         <div class="skills-container">
             <div class="skill-tag">SQL</div>
+            <div class="skill-tag">Excel</div>
             <div class="skill-tag">Python</div>
             <div class="skill-tag">Power BI</div>
             <div class="skill-tag">Tableau</div>
@@ -637,13 +692,15 @@
                 <img src="CRM.jpg" alt="CRM Project">
                 <div class="project-layer">
                     <h4>CRM Data Engineering Project</h4>
+                    <p>End-to-end data pipeline using Azure, SQL, and Power BI.</p>
                     <a href="https://github.com/Ez-114/CRM-Data_Engineering" target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
                 </div>
             </div>
             <div class="project-card">
                 <img src="Soualy.jpg" alt="Chemistry Dashboard">
                 <div class="project-layer">
-                    <h4>InternShip Project</h4>
+                    <h4>Internship Project</h4>
+                    <p>Analysis of business operations and performance metrics.</p>
                     <a href="https://github.com/Yasserghonem/Soualy-Internship" target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
                 </div>
             </div>
@@ -651,20 +708,23 @@
                 <img src="Sales.png" alt="SuperStore Project">
                 <div class="project-layer">
                     <h4>SuperStore Sales Dashboard</h4>
+                    <p>Interactive sales dashboard with Power BI.</p>
                     <a href="https://github.com/Yasserghonem/SuperStore-Sales-Analytics" target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
                 </div>
             </div>
             <div class="project-card">
-                <img src="Movies.png" alt="IMDB Project">
+                <img src="Investment Page.png" alt="Real-Estate Project">
                 <div class="project-layer">
-                    <h4>IMDB Movies Analytics</h4>
-                    <a href="https://github.com/Yasserghonem/IMDB-Movies-Analytics" target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    <h4>Real-Estate Trends Analytics</h4>
+                    <p>Market trend analysis and visualization.</p>
+                    <a href="https://github.com/Yasserghonem/CodeAlpha_Real-Estate-Trends" target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
                 </div>
             </div>
             <div class="project-card">
                  <img src="HR.png" alt="HR Project">
                 <div class="project-layer">
                     <h4>HR Dashboard</h4>
+                     <p>Employee performance and analytics dashboard.</p>
                     <a href="https://github.com/Yasserghonem/HR-Dashboard" target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
                 </div>
             </div>
@@ -672,6 +732,7 @@
                 <img src="Suicide.png" alt="Suicide Analysis Project">
                 <div class="project-layer">
                     <h4>Suicide Analysis Dashboard</h4>
+                    <p>Global trends analysis on a sensitive dataset.</p>
                     <a href="https://github.com/Yasserghonem/Suicide-Analytics-Dashboard"><i class="fa-solid fa-up-right-from-square"></i></a>
                 </div>
             </div>
@@ -706,22 +767,30 @@
     <!-- Typed.js for the typing effect -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     
+    <!-- NEW: ScrollReveal.js for animations on scroll -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
     <!-- Custom JS -->
     <script>
-        // Typing animation
+        // Typing animation (unchanged)
         var typed = new Typed('.multiple-text', {
-            strings: ['Data Engineer', 'BI Analyst', 'Power BI Developer'],
+            strings: ['Data Engineer', 'Business Analyst', 'Power BI Developer'],
             typeSpeed: 70,
             backSpeed: 70,
             backDelay: 1000,
             loop: true
         });
 
-        // Active link switching on scroll
+        // Active link switching & Sticky header (IMPROVED)
         let sections = document.querySelectorAll('section');
         let navLinks = document.querySelectorAll('header nav a');
+        let header = document.querySelector('.header');
 
         window.onscroll = () => {
+            // Sticky Header Logic
+            header.classList.toggle('sticky', window.scrollY > 100);
+
+            // Active Nav Link on Scroll Logic
             sections.forEach(sec => {
                 let top = window.scrollY;
                 let offset = sec.offsetTop - 150;
@@ -736,8 +805,21 @@
                 };
             });
         };
+
+        // NEW: Scroll Reveal Animations
+        ScrollReveal({
+            reset: true,
+            distance: '80px',
+            duration: 2000,
+            delay: 200
+        });
+
+        ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
+        ScrollReveal().reveal('.about-img, .services-container, .projects-container .project-card, .contact-info', { origin: 'bottom' });
+        ScrollReveal().reveal('.home-content h1, .about-content', { origin: 'left' });
+        ScrollReveal().reveal('.education-box, .skill-tag', { origin: 'bottom', interval: 150 });
+
     </script>
 
 </body>
-
 </html>
