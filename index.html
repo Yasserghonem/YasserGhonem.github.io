@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yasser Ghonem | Data Engineer Portfolio</title>
-    <!-- Google Fonts for a professional look -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Swiper.js CSS for Project Slider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
     <!-- CSS STYLES EMBEDDED -->
     <style>
-        /* General Styles and NEW COLOR PALETTE */
+        /* General Styles and NEW LIGHT COLOR PALETTE */
         * {
             margin: 0;
             padding: 0;
@@ -26,21 +29,21 @@
         }
 
         :root {
-            --bg-color: #111827; /* Dark Navy */
-            --second-bg-color: #1F2937; /* Lighter Navy */
-            --text-color: #F3F4F6; /* Off-white */
-            --main-color: #FBBF24; /* Amber/Gold */
-            --main-color-shadow: rgba(251, 191, 36, 0.5); /* Amber shadow */
-            --gradient-end-color: #F97316; /* Vibrant Orange for gradient */
+            --bg-color: #F9FAFB; /* Very Light Gray */
+            --second-bg-color: #FFFFFF; /* White */
+            --text-color: #111827; /* Dark Navy Text */
+            --main-color: #3B82F6; /* Professional Blue */
+            --main-color-shadow: rgba(59, 130, 246, 0.4); /* Blue shadow */
+            --gradient-end-color: #14B8A6; /* Vibrant Teal for gradient */
         }
 
-        /* NEW: Gradient Text Style */
+        /* Gradient Text Style */
         .gradient-text {
             background: linear-gradient(45deg, var(--main-color), var(--gradient-end-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            color: transparent; /* Fallback for older browsers */
+            color: transparent;
         }
 
         html {
@@ -69,9 +72,9 @@
             padding: 1.2rem 2.8rem;
             background: var(--main-color);
             border-radius: 4rem;
-            box-shadow: 0 0 1rem var(--main-color);
+            box-shadow: 0 .5rem 1rem var(--main-color-shadow);
             font-size: 1.6rem;
-            color: var(--second-bg-color);
+            color: #FFFFFF;
             letter-spacing: .1rem;
             font-weight: 600;
             transition: .5s ease;
@@ -79,7 +82,8 @@
 
         .btn:hover {
             box-shadow: none;
-            transform: translateY(-5px);
+            background: #2563EB; /* Slightly darker blue on hover */
+            transform: translateY(-3px);
         }
 
         /* Header */
@@ -94,17 +98,16 @@
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            transition: background-color .4s ease, padding .4s ease;
+            transition: background-color .4s ease, padding .4s ease, box-shadow .4s ease;
         }
 
         .header.sticky {
-            background: var(--bg-color);
-            border-bottom: 1px solid var(--second-bg-color);
-            box-shadow: 0 .2rem .5rem rgba(0,0,0,0.1);
+            background: var(--second-bg-color);
+            box-shadow: 0 .2rem .5rem rgba(0,0,0,0.05);
         }
 
         .logo {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--text-color);
             font-weight: 700;
             cursor: default;
@@ -114,6 +117,7 @@
             font-size: 1.7rem;
             color: var(--text-color);
             margin-left: 4rem;
+            font-weight: 500;
             transition: .3s;
         }
 
@@ -145,10 +149,6 @@
             margin: 2rem 0 3rem;
         }
 
-        .home-content h3:nth-of-type(2) {
-            margin-bottom: 2rem;
-        }
-
         .social-media a {
             display: inline-flex;
             justify-content: center;
@@ -167,7 +167,7 @@
         .social-media a:hover {
             background: var(--main-color);
             color: var(--second-bg-color);
-            box-shadow: 0 0 1rem var(--main-color);
+            box-shadow: 0 0 1rem var(--main-color-shadow);
             transform: translateY(-5px);
         }
 
@@ -193,15 +193,9 @@
         }
 
         @keyframes pulse-shadow {
-            0% {
-                box-shadow: 0 0 1rem var(--main-color);
-            }
-            50% {
-                box-shadow: 0 0 2.5rem var(--main-color-shadow);
-            }
-            100% {
-                box-shadow: 0 0 1rem var(--main-color);
-            }
+            0% { box-shadow: 0 0 1rem var(--main-color-shadow); }
+            50% { box-shadow: 0 0 2.5rem var(--main-color-shadow); }
+            100% { box-shadow: 0 0 1rem var(--main-color-shadow); }
         }
 
         .about-img img {
@@ -210,68 +204,55 @@
             object-fit: cover;
         }
 
-        .about-content h2 {
-            text-align: left;
+        .about-content {
+             flex: 1;
         }
 
-        .about-content h3 {
-            font-size: 2.6rem;
-        }
-
+        .about-content h2 { text-align: left; }
+        .about-content h3 { font-size: 2.6rem; }
         .about-content p {
             font-size: 1.6rem;
             margin: 1.5rem 0 2rem;
             line-height: 1.8;
+            color: #374151; /* Slightly lighter text for paragraphs */
         }
         
-        /* Education Section */
-        .education {
-            background: var(--bg-color);
-        }
+        /* Education & Skills Shared Styles */
+        .education, .skills, .services { padding: 10rem 9% 5rem; }
 
-        .education-container {
+        .education { background: var(--bg-color); }
+        .skills { background: var(--second-bg-color); }
+        #services { background: var(--bg-color); }
+        .projects { background: var(--second-bg-color); }
+
+        .education-container, .services-container {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: stretch;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 3rem;
         }
 
-        .education-box {
+        .education-box, .services-box {
             flex: 1 1 30rem;
             background: var(--second-bg-color);
             padding: 3rem 2rem 4rem;
             border-radius: 2rem;
             text-align: center;
-            border: .2rem solid var(--bg-color);
+            border: .1rem solid #E5E7EB;
             transition: .5s ease;
         }
 
-        .education-box:hover {
+        .education-box:hover, .services-box:hover {
             border-color: var(--main-color);
-            transform: scale(1.02);
-            box-shadow: 0 0 1.5rem var(--main-color-shadow);
+            transform: translateY(-1rem);
+            box-shadow: 0 .8rem 2rem rgba(0,0,0,0.07);
         }
-
-        .education-box i {
-            font-size: 7rem;
-            color: var(--main-color);
-        }
-
-        .education-box h3 {
-            font-size: 2.2rem;
-            margin-top: 1rem;
-        }
-
-        .education-box p {
-            font-size: 1.6rem;
-            margin: 1rem 0 0;
-        }
+        .education-box i, .services-box i { font-size: 7rem; color: var(--main-color); }
+        .education-box h3, .services-box h3 { font-size: 2.2rem; margin: 1rem 0; }
+        .education-box p { font-size: 1.6rem; color: #6B7280; }
 
         /* Skills Section */
-        .skills {
-            background: var(--second-bg-color);
-        }
         .skills-container {
             display: flex;
             flex-wrap: wrap;
@@ -294,255 +275,124 @@
             transform: scale(1.05);
             cursor: default;
         }
-        
+
         /* Services Section */
-        #services {
-             background: var(--bg-color);
-        }
-        .services-container {
-            display: flex;
-            justify-content: center;
-            align-items: stretch;
-            flex-wrap: wrap;
-            gap: 3rem;
-        }
-
-        .services-box {
-            flex: 1 1 40rem;
-            background: var(--second-bg-color);
-            padding: 3rem 2rem;
-            border-radius: 2rem;
-            border: .2rem solid var(--bg-color);
-            transition: .5s ease;
-            text-align: left;
-        }
-
-        .services-box:hover {
-            border-color: var(--main-color);
-            transform: translateY(-1rem);
-            box-shadow: 0 0 2rem var(--main-color-shadow);
-        }
-
-        .services-box i {
-            font-size: 5rem;
-            color: var(--main-color);
-            margin-bottom: 1rem;
-            display: block;
-            text-align: center;
-        }
-
-        .services-box h3 {
-            font-size: 2.4rem;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .services-box ul {
-            list-style: none;
-            padding-left: 2rem;
-        }
-
-        .services-box ul li {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
+        .services-box { text-align: left; }
+        .services-box h3 { text-align: center; }
+        .services-box ul { list-style: none; padding-left: 2rem; }
+        .services-box ul li { font-size: 1.6rem; margin-bottom: 1rem; position: relative; color: #374151; }
         .services-box ul li::before {
-            content: '\f00c'; /* Font Awesome check icon */
+            content: '\f00c';
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             color: var(--main-color);
             position: absolute;
             left: -2.5rem;
         }
-        
-        /* Projects Section */
+
+        /* NEW Projects Section with Swiper.js */
         .projects {
-            background: var(--second-bg-color);
-        }
-
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-            gap: 2.5rem;
-        }
-
-        .project-card {
             position: relative;
+        }
+
+        .project-slider {
+            width: 100%;
+            padding: 2rem;
+            padding-bottom: 6rem; /* Space for pagination */
+        }
+
+        .project-slider .swiper-slide {
+            display: flex;
+            align-items: center;
+            gap: 5rem;
+            background: #fff;
             border-radius: 2rem;
-            overflow: hidden;
-            display: flex;
-            box-shadow: 0 0 1rem rgba(0,0,0, .5);
-            transition: transform 0.4s ease;
-        }
-        
-        .project-card:hover {
-            transform: scale(1.03);
+            padding: 3rem;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+            border: 1px solid #E5E7EB;
         }
 
-        .project-card img {
-            width: 100%;
-            transition: .5s ease;
+        .project-info {
+            flex: 1;
         }
-
-        .project-card:hover img {
-            transform: scale(1.1);
+        .project-info h4 {
+            font-size: 2.8rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
         }
-
-        .project-layer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0,0,0, .3), var(--main-color));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            padding: 0 4rem;
-            opacity: 0;
-            transition: .5s ease;
-        }
-
-        .project-card:hover .project-layer {
-            opacity: 1;
-        }
-
-        .project-layer h4 {
-            font-size: 3rem;
-            color: var(--bg-color);
-            transform: translateY(2rem);
-            transition: transform .5s ease;
-        }
-
-        .project-layer p {
+        .project-info p {
             font-size: 1.6rem;
-            margin: .3rem 0 1rem;
-            color: #eee;
-            transform: translateY(2rem);
-            transition: transform .5s ease .1s;
+            line-height: 1.7;
+            color: #4B5563;
+            margin-bottom: 3rem;
+        }
+        .project-info .btn {
+            font-size: 1.4rem;
+        }
+        .project-img {
+            flex: 1.2;
+        }
+        .project-img img {
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 1rem 3rem rgba(0,0,0,0.1);
         }
 
-        .project-layer a {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 5rem;
-            height: 5rem;
-            background: var(--text-color);
-            border-radius: 50%;
-            transform: translateY(2rem);
-            transition: transform .5s ease .2s;
+        /* Swiper Controls Styling */
+        .swiper-button-next, .swiper-button-prev {
+            color: var(--main-color);
         }
-        
-        .project-card:hover .project-layer h4,
-        .project-card:hover .project-layer p,
-        .project-card:hover .project-layer a {
-            transform: translateY(0);
-        }
-
-        .project-layer a i {
-            font-size: 2rem;
-            color: var(--second-bg-color);
+        .swiper-pagination-bullet-active {
+            background: var(--main-color);
         }
 
         /* Footer (Contact) */
         .footer {
             padding: 5rem 9% 2rem;
-            background: var(--bg-color);
+            background: #111827; /* Dark footer for contrast */
+            color: #D1D5DB;
             text-align: center;
         }
-
-        .footer-content h2 {
-            font-size: 3.5rem;
-        }
-        .footer-content p {
-            font-size: 1.6rem;
-            max-width: 60rem;
-            margin: 1rem auto 3rem;
-        }
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 3rem;
-            margin-bottom: 4rem;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .info-item i {
-            font-size: 2.5rem;
-            color: var(--main-color);
-        }
-        .info-item a {
-            font-size: 1.8rem;
-            color: var(--text-color);
-            transition: .3s;
-        }
-        .info-item a:hover {
-            color: var(--main-color);
-        }
-
-        .footer-bottom {
-            padding-top: 2rem;
-            border-top: 1px solid var(--second-bg-color);
-        }
-        .footer-bottom p {
-            font-size: 1.4rem;
-        }
+        .footer-content h2 { font-size: 3.5rem; color: #FFF; }
+        .footer-content p { font-size: 1.6rem; max-width: 60rem; margin: 1rem auto 3rem; }
+        .contact-info { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 3rem; margin-bottom: 4rem; }
+        .info-item { display: flex; align-items: center; gap: 1rem; }
+        .info-item i { font-size: 2.5rem; color: var(--main-color); }
+        .info-item a { font-size: 1.8rem; color: #F3F4F6; transition: .3s; }
+        .info-item a:hover { color: var(--main-color); }
+        .footer-bottom { padding-top: 2rem; border-top: 1px solid #374151; }
+        .footer-bottom p { font-size: 1.4rem; }
 
         /* Responsive Design */
-        @media (max-width: 1200px) {
-            html { font-size: 55%; }
-        }
-
         @media (max-width: 991px) {
+            html { font-size: 55%; }
             .header { padding: 2rem 3%; }
             section { padding: 10rem 3% 2rem; }
-            .footer { padding: 2rem 3%; }
-            .services { padding-bottom: 7rem; }
-            .projects { padding-bottom: 7rem; }
+            .project-slider .swiper-slide { flex-direction: column-reverse; gap: 3rem; text-align: center; }
         }
 
         @media (max-width: 768px) {
-            .header {
-                background: var(--bg-color);
-            }
-            #menu-icon {
-                display: block;
-            }
+            .header { background: var(--second-bg-color); }
+            #menu-icon { display: block; }
             .navbar {
-                width: 100%;
-                display: flex;
-                justify-content: space-around;
-                margin-top: 1rem;
-                padding: 1rem 0;
-                border-radius: .5rem;
+                position: absolute;
+                top: 100%; left: 0; right: 0;
+                background: var(--second-bg-color);
+                box-shadow: 0 .5rem 1rem rgba(0,0,0,0.1);
+                display: none; /* Modified for a potential toggle menu */
             }
-            .navbar a { margin: 0; }
-            .home {
-                text-align: center;
-                justify-content: center;
-            }
+            .navbar.active { display: block; }
+            .navbar a { display: block; margin: 2rem 2.5rem; }
+
+            .home { text-align: center; justify-content: center; }
             .home-content h1 { font-size: 5rem; }
-            .about {
-                flex-direction: column-reverse;
-                text-align: center;
-            }
-            .about-img {
-                width: 50vw;
-                height: 50vw;
-                margin-top: 2rem;
-            }
+
+            .about { flex-direction: column-reverse; text-align: center; }
+            .about-img { width: 50vw; height: 50vw; margin-top: 2rem; }
             .about-content h2 { text-align: center; }
+
+            .project-slider { padding: 1rem; padding-bottom: 6rem;}
+            .project-slider .swiper-slide { padding: 2rem;}
         }
     </style>
 </head>
@@ -550,7 +400,7 @@
 
     <!-- Header & Navigation -->
     <header class="header">
-        <a href="#" class="logo">Yasser <span class="gradient-text">Ghonem.</span></a>
+        <a href="#" class="logo">YG<span class="gradient-text">.</span></a>
         <nav class="navbar">
             <a href="#home" class="active">Home</a>
             <a href="#about">About</a>
@@ -562,7 +412,7 @@
         </nav>
     </header>
 
-    <!-- Cover Section -->
+    <!-- Home Section -->
     <section class="home" id="home">
         <div class="home-content">
             <h3>Hello, It's Me</h3>
@@ -580,47 +430,26 @@
 
     <!-- About Me Section -->
     <section class="about" id="about">
+        <div class="about-img">
+            <img src="WhatsApp Image 2025-08-11 at 14.38.56_c94051c2.jpg" alt="Yasser Ghonem">
+        </div>
         <div class="about-content">
             <h2 class="heading">About <span class="gradient-text">Me</span></h2>
             <h3>Data Engineer & Business Analyst</h3>
-            <p>I’m a passionate and detail-oriented Data Engineer with strong experience across the full data lifecycle — from extraction and cleaning, to transformation, warehousing, and building interactive dashboards. I have worked with SQL, Python, SSMS, SSIS, Azure Cloud Services, and Power BI, delivering real-world projects that bridge Data Engineering and Business Intelligence.</p>
-            <p>My portfolio includes end-to-end solutions such as HR, Sales, IMDB Movies, and Suicide Analysis Dashboards, as well as automation pipelines that process and store data efficiently. I’ve also developed machine learning models for predictive analysis.</p>
-            <p>I blend the precision of data engineering with the clarity of storytelling — delivering pipelines and dashboards that not only provide actionable insights, but also help teams save money, cut unnecessary costs, and make smarter, faster decisions. My competitive edge lies in my ability to handle projects from raw data to impactful insights — ensuring that stakeholders receive accurate data presented in clear, engaging visuals that drive real results.</p>
-        </div>
-        <div class="about-img">
-            <img src="WhatsApp Image 2025-08-11 at 14.38.56_c94051c2.jpg" alt="Yasser Ghonem">
+            <p>I’m a passionate and detail-oriented Data Engineer with strong experience across the full data lifecycle. I excel at building robust ETL pipelines, designing efficient data warehouses, and crafting insightful dashboards that empower data-driven decisions.</p>
+            <p>My expertise lies in using technologies like SQL, Python, Azure Cloud Services, and Power BI to transform complex datasets into actionable business intelligence. My goal is to bridge the gap between raw data and strategic outcomes, helping teams unlock their full potential.</p>
         </div>
     </section>
 
     <!-- Education Section -->
     <section class="education" id="education">
-        <h2 class="heading"><span class="gradient-text">Education</span></h2>
+        <h2 class="heading"><span class="gradient-text">Education</span> & Certs</h2>
         <div class="education-container">
-            <div class="education-box">
-                <i class="fa-solid fa-graduation-cap"></i>
-                <h3>Faculty of Business, MIS Dept.</h3>
-                <p>Grade: 3.73 / 4</p>
-            </div>
-            <div class="education-box">
-                <i class="fa-solid fa-certificate"></i>
-                <h3>Azure Data Engineer</h3>
-                <p>From: Ministry of Communication and IT</p>
-            </div>
-            <div class="education-box">
-                <i class="fa-solid fa-certificate"></i>
-                <h3>Associate & Intermediate Data Engineer</h3>
-                <p>From: DataCamp</p>
-            </div>
-             <div class="education-box">
-                <i class="fa-solid fa-certificate"></i>
-                <h3>Advanced Data Analytics</h3>
-                <p>From: National Telecommunication Institute</p>
-            </div>
-            <div class="education-box">
-                <i class="fa-solid fa-certificate"></i>
-                <h3>Power Bi Developer</h3>
-                <p>From: CodeAlpha</p>
-            </div>
+            <div class="education-box"><i class="fa-solid fa-graduation-cap"></i><h3>Faculty of Business, MIS Dept.</h3><p>Grade: 3.73 / 4</p></div>
+            <div class="education-box"><i class="fa-solid fa-certificate"></i><h3>Azure Data Engineer</h3><p>From: Ministry of Communication and IT</p></div>
+            <div class="education-box"><i class="fa-solid fa-certificate"></i><h3>Associate & Intermediate Data Engineer</h3><p>From: DataCamp</p></div>
+            <div class="education-box"><i class="fa-solid fa-certificate"></i><h3>Advanced Data Analytics</h3><p>From: National Telecommunication Institute</p></div>
+            <div class="education-box"><i class="fa-solid fa-certificate"></i><h3>Power BI Developer</h3><p>From: CodeAlpha</p></div>
         </div>
     </section>
     
@@ -628,19 +457,12 @@
     <section class="skills" id="skills">
         <h2 class="heading">My <span class="gradient-text">Skills</span></h2>
         <div class="skills-container">
-            <div class="skill-tag">SQL</div>
-            <div class="skill-tag">Excel</div>
-            <div class="skill-tag">Python</div>
-            <div class="skill-tag">Power BI</div>
-            <div class="skill-tag">Tableau</div>
-            <div class="skill-tag">Azure Cloud</div>
-            <div class="skill-tag">SSIS</div>
-            <div class="skill-tag">SSMS</div>
-            <div class="skill-tag">ETL/ELT Pipelines</div>
-            <div class="skill-tag">Data Warehousing</div>
-            <div class="skill-tag">Data Modeling</div>
-            <div class="skill-tag">Machine Learning</div>
-            <div class="skill-tag">Data Visualization</div>
+            <div class="skill-tag">SQL</div><div class="skill-tag">Python</div><div class="skill-tag">Power BI</div>
+            <div class="skill-tag">Azure Cloud</div><div class="skill-tag">ETL/ELT Pipelines</div>
+            <div class="skill-tag">Data Warehousing</div><div class="skill-tag">SSIS</div>
+            <div class="skill-tag">SSMS</div><div class="skill-tag">Tableau</div>
+            <div class="skill-tag">Data Modeling</div><div class="skill-tag">Machine Learning</div>
+            <div class="skill-tag">Excel</div><div class="skill-tag">Data Visualization</div>
         </div>
     </section>
 
@@ -648,83 +470,83 @@
     <section class="services" id="services">
         <h2 class="heading">Offered <span class="gradient-text">Services</span></h2>
         <div class="services-container">
-            <div class="services-box">
-                <i class="fa-solid fa-cogs"></i>
-                <h3>Data Engineering</h3>
-                <ul>
-                    <li>Building & Developing ETL/ELT Pipelines</li>
-                    <li>Data Warehouse Design & Implementation</li>
-                    <li>Cloud Data Integration (Azure)</li>
-                    <li>Data Modeling & Architecture</li>
-                    <li>Process Automation & Data Ingestion</li>
-                </ul>
-            </div>
-            <div class="services-box">
-                <i class="fa-solid fa-chart-bar"></i>
-                <h3>Dashboards & BI</h3>
-                <ul>
-                    <li>Interactive Dashboard Design (Power BI & Tableau)</li>
-                    <li>Data Storytelling & Visualization</li>
-                    <li>Business Intelligence (BI) Reporting</li>
-                    <li>KPI Tracking and Performance Metrics</li>
-                    <li>Exploratory Data Analysis (EDA)</li>
-                </ul>
-            </div>
+            <div class="services-box"><i class="fa-solid fa-cogs"></i><h3>Data Engineering</h3><ul><li>Building & Developing ETL/ELT Pipelines</li><li>Data Warehouse Design & Implementation</li><li>Cloud Data Integration (Azure)</li><li>Data Modeling & Architecture</li><li>Process Automation & Data Ingestion</li></ul></div>
+            <div class="services-box"><i class="fa-solid fa-chart-bar"></i><h3>Dashboards & BI</h3><ul><li>Interactive Dashboard Design (Power BI & Tableau)</li><li>Data Storytelling & Visualization</li><li>Business Intelligence (BI) Reporting</li><li>KPI Tracking and Performance Metrics</li><li>Exploratory Data Analysis (EDA)</li></ul></div>
         </div>
     </section>
 
-    <!-- Projects (Previous Work) Section -->
+    <!-- NEW Projects Section -->
     <section class="projects" id="projects">
         <h2 class="heading">Latest <span class="gradient-text">Projects</span></h2>
-        <div class="projects-container">
-            <div class="project-card">
-                <img src="CRM.jpg" alt="CRM Project">
-                <div class="project-layer">
-                    <h4>CRM Data Engineering Project</h4>
-                    <p>End-to-end data pipeline using Azure, SQL, and Power BI.</p>
-                    <a href="https://github.com/Ez-114/CRM-Data_Engineering" target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
+        
+        <!-- Swiper -->
+        <div class="swiper project-slider">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <div class="project-info">
+                        <h4>CRM Data Engineering Project</h4>
+                        <p>Developed an end-to-end data engineering solution to analyze CRM data. This project involved building an ETL pipeline using Azure Data Factory, transforming data with SQL, and creating an interactive Power BI dashboard to track key sales and customer metrics.</p>
+                        <a href="https://github.com/Ez-114/CRM-Data_Engineering" class="btn" target="_blank"><i class="fa-brands fa-github"></i> View on GitHub</a>
+                    </div>
+                    <div class="project-img"><img src="CRM.jpg" alt="CRM Project"></div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                    <div class="project-info">
+                        <h4>Soualy Internship Project</h4>
+                        <p>During my internship, I analyzed business operations data to identify performance bottlenecks. The project involved data extraction, cleaning with Python, and building a dashboard to visualize operational efficiency and provide actionable insights for process improvement.</p>
+                        <a href="https://github.com/Yasserghonem/Soualy-Internship" class="btn" target="_blank"><i class="fa-brands fa-github"></i> View on GitHub</a>
+                    </div>
+                    <div class="project-img"><img src="Soualy.jpg" alt="Soualy Internship Project"></div>
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                    <div class="project-info">
+                        <h4>SuperStore Sales Dashboard</h4>
+                        <p>A comprehensive sales analytics dashboard built with Power BI. This project focused on advanced DAX calculations and data modeling to track sales trends, product performance, and regional profitability for a large retail dataset.</p>
+                        <a href="https://github.com/Yasserghonem/SuperStore-Sales-Analytics" class="btn" target="_blank"><i class="fa-brands fa-github"></i> View on GitHub</a>
+                    </div>
+                    <div class="project-img"><img src="Sales.png" alt="SuperStore Project"></div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="swiper-slide">
+                    <div class="project-info">
+                        <h4>Real-Estate Trends Analytics</h4>
+                        <p>An analytical project focusing on visualizing real-estate market trends. I used Python for web scraping property data, performed exploratory data analysis, and created visualizations to identify patterns in pricing, location popularity, and market fluctuations.</p>
+                        <a href="https://github.com/Yasserghonem/CodeAlpha_Real-Estate-Trends" class="btn" target="_blank"><i class="fa-brands fa-github"></i> View on GitHub</a>
+                    </div>
+                    <div class="project-img"><img src="Investment Page.png" alt="Real-Estate Project"></div>
+                </div>
+                
+                <!-- Slide 5 -->
+                <div class="swiper-slide">
+                    <div class="project-info">
+                        <h4>HR Attrition Dashboard</h4>
+                        <p>Designed and developed an interactive Power BI dashboard to analyze employee attrition. The dashboard helps HR departments identify key factors contributing to employee turnover, track retention rates, and visualize demographic data for better workforce planning.</p>
+                        <a href="https://github.com/Yasserghonem/HR-Dashboard" class="btn" target="_blank"><i class="fa-brands fa-github"></i> View on GitHub</a>
+                    </div>
+                    <div class="project-img"><img src="HR.png" alt="HR Project"></div>
+                </div>
+
+                <!-- Slide 6 -->
+                <div class="swiper-slide">
+                    <div class="project-info">
+                        <h4>Global Suicide Analysis</h4>
+                        <p>A data visualization project analyzing a sensitive dataset on global suicide rates. Using Tableau, I created a dashboard to explore trends across different countries, age groups, and genders, aiming to present the data clearly and responsibly for awareness.</p>
+                        <a href="https://github.com/Yasserghonem/Suicide-Analytics-Dashboard" class="btn" target="_blank"><i class="fa-brands fa-github"></i> View on GitHub</a>
+                    </div>
+                    <div class="project-img"><img src="Suicide.png" alt="Suicide Analysis Project"></div>
                 </div>
             </div>
-            <div class="project-card">
-                <img src="Soualy.jpg" alt="Chemistry Dashboard">
-                <div class="project-layer">
-                    <h4>Internship Project</h4>
-                    <p>Analysis of business operations and performance metrics.</p>
-                    <a href="https://github.com/Yasserghonem/Soualy-Internship" target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="Sales.png" alt="SuperStore Project">
-                <div class="project-layer">
-                    <h4>SuperStore Sales Dashboard</h4>
-                    <p>Interactive sales dashboard with Power BI.</p>
-                    <a href="https://github.com/Yasserghonem/SuperStore-Sales-Analytics" target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="Investment Page.png" alt="Real-Estate Project">
-                <div class="project-layer">
-                    <h4>Real-Estate Trends Analytics</h4>
-                    <p>Market trend analysis and visualization.</p>
-                    <a href="https://github.com/Yasserghonem/CodeAlpha_Real-Estate-Trends" target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
-                </div>
-            </div>
-            <div class="project-card">
-                 <img src="HR.png" alt="HR Project">
-                <div class="project-layer">
-                    <h4>HR Dashboard</h4>
-                     <p>Employee performance and analytics dashboard.</p>
-                    <a href="https://github.com/Yasserghonem/HR-Dashboard" target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="Suicide.png" alt="Suicide Analysis Project">
-                <div class="project-layer">
-                    <h4>Suicide Analysis Dashboard</h4>
-                    <p>Global trends analysis on a sensitive dataset.</p>
-                    <a href="https://github.com/Yasserghonem/Suicide-Analytics-Dashboard"><i class="fa-solid fa-up-right-from-square"></i></a>
-                </div>
-            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
     </section>
 
@@ -732,42 +554,29 @@
     <footer class="footer" id="contact">
         <div class="footer-content">
             <h2 class="heading">Let's build something great <span class="gradient-text">together!</span></h2>
-            <p>Ready to turn your data into a valuable asset? Let's talk.</p>
+            <p>Ready to turn your data into a valuable asset? I'm available for freelance projects and full-time opportunities. Let's talk.</p>
             <div class="contact-info">
-                <div class="info-item">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                    <a href="tel:+201275379078">+201275379078</a>
-                </div>
-                <div class="info-item">
-                    <i class="fa-brands fa-linkedin"></i>
-                    <a href="https://www.linkedin.com/in/yasser-ghonem-3b7601262" target="_blank">in/yasser-ghonem</a>
-                </div>
-                <div class="info-item">
-                    <i class="fa-brands fa-github"></i>
-                    <a href="https://github.com/Yasserghonem" target="_blank">github.com/Yasserghonem</a>
-                </div>
+                <div class="info-item"><i class="fa-solid fa-mobile-screen-button"></i><a href="tel:+201275379078">+201275379078</a></div>
+                <div class="info-item"><i class="fa-brands fa-linkedin"></i><a href="https://www.linkedin.com/in/yasser-ghonem-3b7601262" target="_blank">in/yasser-ghonem</a></div>
+                <div class="info-item"><i class="fa-brands fa-github"></i><a href="https://github.com/Yasserghonem" target="_blank">github.com/Yasserghonem</a></div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>Copyright &copy; 2024 by Yasser Ghonem | All Rights Reserved.</p>
-        </div>
+        <div class="footer-bottom"><p>Copyright &copy; 2024 by Yasser Ghonem | All Rights Reserved.</p></div>
     </footer>
 
     <!-- Typed.js for the typing effect -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-    
     <!-- ScrollReveal.js for animations on scroll -->
     <script src="https://unpkg.com/scrollreveal"></script>
+    <!-- Swiper.js for Project Slider -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <!-- Custom JS -->
     <script>
         // Typing animation
         var typed = new Typed('.multiple-text', {
             strings: ['Data Engineer', 'Business Analyst', 'Power BI Developer'],
-            typeSpeed: 70,
-            backSpeed: 70,
-            backDelay: 1000,
-            loop: true
+            typeSpeed: 70, backSpeed: 70, backDelay: 1000, loop: true
         });
 
         // Active link switching & Sticky header
@@ -776,16 +585,12 @@
         let header = document.querySelector('.header');
 
         window.onscroll = () => {
-            // Sticky Header Logic
             header.classList.toggle('sticky', window.scrollY > 100);
-
-            // Active Nav Link on Scroll Logic
             sections.forEach(sec => {
                 let top = window.scrollY;
                 let offset = sec.offsetTop - 150;
                 let height = sec.offsetHeight;
                 let id = sec.getAttribute('id');
-
                 if (top >= offset && top < offset + height) {
                     navLinks.forEach(links => {
                         links.classList.remove('active');
@@ -796,19 +601,28 @@
         };
 
         // Scroll Reveal Animations
-        ScrollReveal({
-            reset: true,
-            distance: '80px',
-            duration: 2000,
-            delay: 200
-        });
-
+        ScrollReveal({ reset: false, distance: '80px', duration: 2000, delay: 200 });
         ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
-        ScrollReveal().reveal('.about-img, .services-container, .projects-container .project-card, .contact-info', { origin: 'bottom' });
+        ScrollReveal().reveal('.about-img, .services-container, .contact-info', { origin: 'bottom' });
         ScrollReveal().reveal('.home-content h1, .about-content', { origin: 'left' });
         ScrollReveal().reveal('.education-box, .skill-tag', { origin: 'bottom', interval: 150 });
+        ScrollReveal().reveal('.project-slider', { origin: 'bottom' });
 
+        // Initialize Swiper
+        var swiper = new Swiper(".project-slider", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            grabCursor: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
     </script>
-
 </body>
 </html>
