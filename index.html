@@ -4,654 +4,877 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yasser Ghonem | Data Engineer Portfolio</title>
-    <!-- Google Fonts -->
+    <meta name="description" content="Yasser Ghonem - Data Engineer & BI Developer Portfolio. Azure, SQL, Python, Power BI expert.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Swiper.js CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <style>
-        /* General Styles & Modern Dark Tech Palette */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            text-decoration: none;
-            border: none;
-            outline: none;
-            scroll-behavior: smooth;
-            font-family: 'Poppins', sans-serif;
         }
 
         :root {
-            --bg-color: #0B1120; /* Deep Dark Navy */
-            --second-bg-color: #111827; /* Slightly lighter Navy for cards */
-            --text-color: #F3F4F6; /* Off-White Text */
-            --main-color: #3B82F6; /* Vibrant Blue */
-            --main-color-shadow: rgba(59, 130, 246, 0.5); 
-            --gradient-end-color: #06B6D4; /* Cyan/Teal for gradient */
-            --glass-bg: rgba(17, 24, 39, 0.7);
-            --border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Glowing Background Effect */
-        body::before {
-            content: '';
-            position: fixed;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .gradient-text {
-            background: linear-gradient(45deg, var(--main-color), var(--gradient-end-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-            font-weight: bold;
+            --bg-primary: #0a0c10;
+            --bg-secondary: #111418;
+            --bg-card: #1a1e24;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aab5;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --border-color: rgba(255,255,255,0.08);
+            --gradient-1: linear-gradient(135deg, #3b82f6, #06b6d4);
         }
 
         html {
+            scroll-behavior: smooth;
             font-size: 62.5%;
-            overflow-x: hidden;
         }
 
         body {
-            background: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
         }
 
-        section {
-            min-height: 100vh;
-            padding: 10rem 9% 2rem;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 4px; }
+
+        /* Selection */
+        ::selection {
+            background: rgba(59,130,246,0.3);
+            color: white;
         }
 
-        .heading {
-            text-align: center;
-            font-size: 4.5rem;
-            margin-bottom: 4rem;
+        .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
+        /* Buttons */
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
             padding: 1.2rem 2.8rem;
-            background: linear-gradient(45deg, var(--main-color), var(--gradient-end-color));
-            border-radius: 4rem;
-            box-shadow: 0 .5rem 1.5rem var(--main-color-shadow);
-            font-size: 1.6rem;
-            color: #FFFFFF;
-            letter-spacing: .1rem;
+            background: var(--gradient-1);
+            border-radius: 8px;
+            font-size: 1.5rem;
             font-weight: 600;
-            transition: 0.4s ease;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
 
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 0; height: 100%;
-            background: var(--bg-color);
-            z-index: -1;
-            transition: 0.4s ease;
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
         }
 
-        .btn:hover::before {
-            width: 100%;
+        .btn-outline:hover {
+            background: var(--accent-blue);
+            color: white;
+            transform: translateY(-2px);
         }
 
         .btn:hover {
-            box-shadow: 0 0 2rem var(--gradient-end-color);
-            color: var(--main-color);
-            border: 1px solid var(--main-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59,130,246,0.3);
         }
 
         /* Header */
         .header {
             position: fixed;
-            top: 0; left: 0; width: 100%;
-            padding: 2rem 9%;
-            background: transparent;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.8rem 9%;
+            background: rgba(10,12,16,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 100;
-            transition: .4s ease;
-        }
-
-        .header.sticky {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
         }
 
         .logo {
-            font-size: 3rem;
-            color: var(--text-color);
-            font-weight: 700;
-            cursor: default;
+            font-size: 2.8rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: white;
+            line-height: 1;
+        }
+
+        .navbar {
+            display: flex;
+            gap: 3.5rem;
         }
 
         .navbar a {
-            font-size: 1.7rem;
-            color: #9CA3AF;
-            margin-left: 4rem;
+            text-decoration: none;
+            font-size: 1.5rem;
             font-weight: 500;
-            transition: .3s;
-            position: relative;
-        }
-
-        .navbar a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px; left: 0;
-            width: 0; height: 2px;
-            background: var(--main-color);
-            transition: .3s;
-        }
-
-        .navbar a:hover::after, .navbar a.active::after {
-            width: 100%;
+            color: var(--text-secondary);
+            transition: 0.3s;
         }
 
         .navbar a:hover, .navbar a.active {
-            color: var(--text-color);
+            color: var(--accent-blue);
         }
 
         #menu-icon {
-            font-size: 3.6rem;
-            color: var(--text-color);
+            font-size: 2.5rem;
             display: none;
             cursor: pointer;
         }
 
-        /* Home Section */
-        .home {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
+        /* Sections */
+        section {
+            padding: 10rem 9% 6rem;
         }
 
-        .home-content h3 { font-size: 3.2rem; font-weight: 700; }
-        .home-content h1 { font-size: 5.6rem; font-weight: 700; line-height: 1.3; }
-        .home-content p { font-size: 1.6rem; margin: 2rem 0 3rem; color: #D1D5DB; }
+        .heading {
+            font-size: 3.8rem;
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        /* Home */
+        .home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 20% 50%, rgba(59,130,246,0.08) 0%, transparent 50%);
+        }
+
+        .home-content {
+            width: 100%;
+        }
+
+        .home-content h3 {
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .home-content h1 {
+            font-size: 6rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .home-content .typed-wrapper {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .home-content .typed-wrapper span:first-child {
+            color: var(--text-secondary);
+        }
+
+        .multiple-text {
+            display: inline-block;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .home-content p {
+            font-size: 1.6rem;
+            color: var(--text-secondary);
+            max-width: 550px;
+            margin: 2rem 0 3rem;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
 
         .social-media a {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 4.5rem; height: 4.5rem;
-            background: transparent;
-            border: .2rem solid var(--main-color);
-            border-radius: 50%;
-            font-size: 2rem;
-            color: var(--main-color);
-            margin: 0 1.5rem 3rem 0;
-            transition: .5s ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .social-media a::before {
-            content: ''; position: absolute;
-            top: 0; left: 0; width: 0; height: 100%;
-            background: var(--main-color); z-index: -1;
-            transition: .5s ease;
-        }
-
-        .social-media a:hover::before { width: 100%; }
-        .social-media a:hover { color: var(--bg-color); box-shadow: 0 0 1.5rem var(--main-color-shadow); transform: translateY(-5px); }
-
-        /* About Section */
-        .about {
             display: flex;
-            justify-content: center;
             align-items: center;
-            gap: 4rem;
-            background: var(--second-bg-color);
-        }
-
-        .about-img {
-            width: 25vw; height: 25vw;
-            min-width: 250px; min-height: 250px;
+            justify-content: center;
+            width: 4rem;
+            height: 4rem;
+            background: var(--bg-card);
             border-radius: 50%;
-            border: .5rem solid var(--main-color);
-            overflow: hidden;
-            flex-shrink: 0;
-            box-shadow: 0 0 2rem var(--main-color-shadow);
-            transition: 0.5s ease;
+            font-size: 1.8rem;
+            color: var(--accent-blue);
+            transition: 0.3s;
+            text-decoration: none;
         }
 
-        .about-img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 4rem var(--gradient-end-color);
-        }
-
-        .about-img img { width: 100%; height: 100%; object-fit: cover; }
-        .about-content { flex: 1; }
-        .about-content h2 { text-align: left; }
-        .about-content h3 { font-size: 2.6rem; }
-        .about-content p { font-size: 1.6rem; margin: 1.5rem 0 2rem; line-height: 1.8; color: #9CA3AF; }
-
-        /* Education & Services Shared Styles (Glassmorphism Cards) */
-        .education, .skills, .services { padding: 10rem 9% 5rem; }
-        .education { background: var(--bg-color); }
-        .skills { background: var(--second-bg-color); }
-        #services { background: var(--bg-color); }
-        .projects { background: var(--second-bg-color); }
-
-        .education-container, .services-container {
-            display: flex; justify-content: center; align-items: stretch; flex-wrap: wrap; gap: 3rem;
-        }
-
-        .education-box, .services-box {
-            flex: 1 1 30rem;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            padding: 3rem 2rem 4rem;
-            border-radius: 2rem;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            transition: .5s ease;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .education-box:hover, .services-box:hover {
-            border-color: var(--main-color);
-            transform: translateY(-1rem);
-            box-shadow: 0 0 2rem var(--main-color-shadow);
-        }
-
-        .education-box i, .services-box i { font-size: 6rem; color: var(--main-color); margin-bottom: 1.5rem;}
-        .education-box h3, .services-box h3 { font-size: 2.2rem; margin: 1rem 0; color: #FFF;}
-        .education-box p { font-size: 1.6rem; color: #9CA3AF; }
-
-        /* Skills Section */
-        .skills-container {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem;
-        }
-        
-        .skill-tag {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-color);
-            padding: 1.2rem 3rem;
-            border-radius: 3rem;
-            font-size: 1.6rem;
-            font-weight: 500;
-            border: 1px solid var(--border-color);
-            transition: .3s ease;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .skill-tag:hover {
-            background: var(--main-color);
-            color: #FFF;
-            border-color: var(--main-color);
-            box-shadow: 0 0 1.5rem var(--main-color-shadow);
+        .social-media a:hover {
+            background: var(--accent-blue);
+            color: white;
             transform: translateY(-3px);
         }
 
-        /* Services Section Specifics */
-        .services-box { text-align: left; }
-        .services-box h3 { text-align: center; margin-bottom: 2rem;}
-        .services-box ul { list-style: none; padding-left: 2rem; }
-        .services-box ul li { font-size: 1.6rem; margin-bottom: 1.2rem; position: relative; color: #D1D5DB; }
-        .services-box ul li::before {
-            content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
-            color: var(--gradient-end-color); position: absolute; left: -2.5rem;
+        /* About */
+        .about {
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            gap: 5rem;
         }
 
-        /* Projects Section */
-        .projects { position: relative; }
-        .project-slider { width: 100%; padding: 2rem; padding-bottom: 8rem; }
-        
-        .project-slider .swiper-slide {
-            display: flex; align-items: center; gap: 5rem;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 2rem; padding: 4rem;
+        .about-img {
+            flex-shrink: 0;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent-blue);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content .heading {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        /* Education Cards */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .edu-card {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 16px;
             border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
+            transition: 0.3s;
         }
 
-        .project-info { flex: 1; }
-        .project-info h4 { font-size: 3rem; color: #FFF; margin-bottom: 1.5rem; }
-        .project-info p { font-size: 1.6rem; line-height: 1.8; color: #9CA3AF; margin-bottom: 3rem; }
-        
-        .project-img { flex: 1.2; overflow: hidden; border-radius: 1.5rem; }
+        .edu-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+
+        .edu-card i {
+            font-size: 3rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .edu-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .edu-card .date {
+            font-size: 1.3rem;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .edu-card p {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+        }
+
+        /* Skills */
+        .skills {
+            background: var(--bg-primary);
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+
+        .skill-item {
+            background: var(--bg-card);
+            padding: 1rem 2rem;
+            border-radius: 40px;
+            font-size: 1.4rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: 0.3s;
+        }
+
+        .skill-item:hover {
+            background: var(--accent-blue);
+            transform: translateY(-2px);
+            border-color: var(--accent-blue);
+        }
+
+        /* Services */
+        .services {
+            background: var(--bg-secondary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+        }
+
+        .service-card ul li {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .service-card ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+        }
+
+        /* Projects Swiper */
+        .projects {
+            background: var(--bg-primary);
+            overflow: hidden;
+        }
+
+        .project-slider {
+            padding: 2rem 0 5rem;
+        }
+
+        .swiper-slide {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-info {
+            flex: 1;
+        }
+
+        .project-info h4 {
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-info p {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-tech span {
+            background: rgba(59,130,246,0.15);
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+        }
+
+        .project-img {
+            flex: 1;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
         .project-img img {
-            width: 100%; border-radius: 1.5rem;
-            transition: transform 0.5s ease;
-            box-shadow: 0 1rem 3rem rgba(0,0,0,0.3);
-        }
-        .project-slider .swiper-slide:hover .project-img img {
-            transform: scale(1.08); /* Zoom effect on hover */
+            width: 100%;
+            height: auto;
+            transition: 0.5s;
         }
 
-        /* Swiper Controls */
-        .swiper-button-next, .swiper-button-prev { color: var(--main-color); background: rgba(0,0,0,0.3); padding: 3rem 2rem; border-radius: 50%; backdrop-filter: blur(5px);}
-        .swiper-pagination-bullet { background: #6B7280; opacity: 1; width: 12px; height: 12px;}
-        .swiper-pagination-bullet-active { background: var(--main-color); width: 30px; border-radius: 10px; }
+        .swiper-slide:hover .project-img img {
+            transform: scale(1.05);
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            color: var(--accent-blue);
+        }
+
+        .swiper-pagination-bullet {
+            background: var(--text-secondary);
+        }
+
+        .swiper-pagination-bullet-active {
+            background: var(--accent-blue);
+        }
 
         /* Footer */
-        .footer { padding: 6rem 9% 2rem; background: #080D1A; color: #9CA3AF; text-align: center; border-top: 1px solid var(--border-color);}
-        .footer-content h2 { font-size: 3.5rem; color: #FFF; margin-bottom: 1.5rem;}
-        .footer-content p { font-size: 1.6rem; max-width: 60rem; margin: 0 auto 3rem; }
-        .contact-info { display: flex; justify-content: center; flex-wrap: wrap; gap: 4rem; margin-bottom: 4rem; }
-        .info-item { display: flex; align-items: center; gap: 1.5rem; }
-        .info-item i { font-size: 2.5rem; color: var(--main-color); }
-        .info-item a { font-size: 1.8rem; color: #F3F4F6; transition: .3s; }
-        .info-item a:hover { color: var(--gradient-end-color); text-shadow: 0 0 10px var(--main-color-shadow);}
-        .footer-bottom { padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); }
-        .footer-bottom p { font-size: 1.4rem; }
+        .footer {
+            background: var(--bg-secondary);
+            padding: 5rem 9% 3rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
 
-        /* Responsive Design */
-        @media (max-width: 991px) {
-            html { font-size: 55%; }
-            .header { padding: 2rem 5%; }
-            section { padding: 10rem 5% 2rem; }
-            .project-slider .swiper-slide { flex-direction: column-reverse; gap: 3rem; text-align: center; }
+        .footer h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer > p {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-info a {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            transition: 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent-blue);
+        }
+
+        .copyright {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            html { font-size: 58%; }
+            section { padding: 8rem 6% 5rem; }
+            .header { padding: 1.5rem 6%; }
         }
 
         @media (max-width: 768px) {
-            .header { background: var(--glass-bg); backdrop-filter: blur(10px); }
             #menu-icon { display: block; }
             .navbar {
-                position: absolute; top: 100%; left: 0; width: 100%;
-                background: var(--second-bg-color);
-                border-top: 1px solid var(--border-color);
-                display: none; flex-direction: column; text-align: center;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                gap: 0;
                 padding: 2rem 0;
+                display: none;
+                border-top: 1px solid var(--border-color);
             }
             .navbar.active { display: flex; }
-            .navbar a { margin: 1.5rem 0; font-size: 2rem; }
+            .navbar a { padding: 1rem 9%; }
+            
+            .home-content h1 { font-size: 4rem; }
+            .home-content .typed-wrapper { font-size: 2rem; }
+            .about { flex-direction: column; text-align: center; }
+            .about-content .heading { text-align: center; }
+            .swiper-slide { flex-direction: column-reverse; text-align: center; }
+            .project-tech { justify-content: center; }
+            .heading { font-size: 3rem; }
+        }
 
-            .home { text-align: center; justify-content: center; }
-            .home-content h1 { font-size: 5rem; }
-            .about { flex-direction: column-reverse; text-align: center; }
-            .about-img { width: 50vw; height: 50vw; margin-top: 2rem; }
-            .about-content h2 { text-align: center; }
+        @media (max-width: 480px) {
+            html { font-size: 55%; }
+            .home-content h1 { font-size: 3.2rem; }
+            .about-img { width: 200px; height: 200px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header & Navigation -->
-    <header class="header">
-        <a href="#" class="logo">YG<span class="gradient-text">.</span></a>
-        <i class="fa-solid fa-bars" id="menu-icon"></i> <!-- Fixed Menu Icon -->
-        <nav class="navbar">
-            <a href="#home" class="active">Home</a>
-            <a href="#about">About</a>
-            <a href="#education">Education</a>
-            <a href="#skills">Skills</a>
-            <a href="#services">Services</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+<header class="header">
+    <a href="#" class="logo">Yasser<span class="gradient-text">.</span></a>
+    <i class="fas fa-bars" id="menu-icon"></i>
+    <nav class="navbar">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
 
-    <!-- Home Section -->
-    <section class="home" id="home">
-        <div class="home-content">
-            <h3>Hello, It's Me</h3>
-            <h1>Yasser Ghonem</h1>
-            <h3>And I'm a <span class="multiple-text gradient-text"></span></h3>
-            <p>I transform raw data into strategic insights that drive business success through modern data architecture.</p>
-            <div class="social-media">
-                <a href="https://www.linkedin.com/in/yasser-ghonem-3b7601262" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="https://github.com/Yasserghonem" target="_blank"><i class="fa-brands fa-github"></i></a>
-                <a href="tel:+201275379078"><i class="fa-solid fa-phone"></i></a>
+<section class="home" id="home">
+    <div class="home-content">
+        <h3>Hello, I'm</h3>
+        <h1>Yasser Ghonem</h1>
+        <div class="typed-wrapper">
+            <span>And I'm a</span>
+            <span class="multiple-text"></span>
+        </div>
+        <p>Junior Data Engineer skilled in designing ETL pipelines, Azure cloud services, and turning raw data into actionable business insights.</p>
+        <div class="social-media">
+            <a href="https://www.linkedin.com/in/yasser-ghonem-3b7601262" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/Yasserghonem" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://yasserghonem.github.io/" target="_blank"><i class="fas fa-globe"></i></a>
+            <a href="tel:+201275379078"><i class="fas fa-phone"></i></a>
+        </div>
+        <a href="#projects" class="btn">View My Work <i class="fas fa-arrow-right"></i></a>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="about-img">
+        <img src="6028494849645939796.jpg" alt="Yasser Ghonem">
+    </div>
+    <div class="about-content">
+        <h2 class="heading">About <span class="gradient-text">Me</span></h2>
+        <h3>Data Engineer & BI Developer</h3>
+        <p>I'm a passionate Data Engineer with strong experience across the full data lifecycle — from building robust ETL pipelines to designing efficient data warehouses and crafting insightful dashboards.</p>
+        <p>My expertise includes SQL, Python, Azure Cloud (Data Factory, Synapse, Data Lake), SSIS, and Power BI. I hold a 3.73 GPA in MIS from Alexandria University and multiple Azure certifications.</p>
+        <a href="https://drive.google.com/file/d/1Y1tW8N3qyuPpLhJDbeOFicC-4wLbF9uA/view?usp=drive_link" class="btn-outline btn" target="_blank"><i class="fas fa-download"></i> Download CV</a>
+    </div>
+</section>
+
+<section class="education" id="education">
+    <h2 class="heading">Education & <span class="gradient-text">Certifications</span></h2>
+    <div class="edu-grid">
+        <div class="edu-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>Faculty of Business, MIS</h3>
+            <span class="date">Alexandria University | 2022 – 2026</span>
+            <p>Grade: 3.73 / 4 (A-)</p>
+        </div>
+        <div class="edu-card">
+            <i class="fas fa-cloud"></i>
+            <h3>Azure Data Engineer</h3>
+            <span class="date">Ministry of Communication & IT | Feb 2025</span>
+            <p>Microsoft Azure Data Engineering certification</p>
+        </div>
+        <div class="edu-card">
+            <i class="fas fa-database"></i>
+            <h3>Associate Data Engineer – SQL</h3>
+            <span class="date">DataCamp | March 2025</span>
+            <p>Advanced SQL & Data Engineering fundamentals</p>
+        </div>
+        <div class="edu-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Azure Data Engineering</h3>
+            <span class="date">DotPy | Oct 2024</span>
+            <p>Cloud data pipelines & architecture</p>
+        </div>
+        <div class="edu-card">
+            <i class="fas fa-chart-pie"></i>
+            <h3>Data Analytics Internship</h3>
+            <span class="date">Soualy | Aug 2025</span>
+            <p>Power BI, Python, Excel automation</p>
+        </div>
+        <div class="edu-card">
+            <i class="fas fa-brain"></i>
+            <h3>Advanced Data Analytics</h3>
+            <span class="date">NTI | Aug 2025</span>
+            <p>ML, BI, and advanced analytics</p>
+        </div>
+    </div>
+</section>
+
+<section class="skills" id="skills">
+    <h2 class="heading">Technical <span class="gradient-text">Skills</span></h2>
+    <div class="skills-grid">
+        <span class="skill-item">SQL</span>
+        <span class="skill-item">Python</span>
+        <span class="skill-item">Power BI</span>
+        <span class="skill-item">Tableau</span>
+        <span class="skill-item">Azure Cloud</span>
+        <span class="skill-item">Azure Data Factory</span>
+        <span class="skill-item">Synapse Analytics</span>
+        <span class="skill-item">Data Lake</span>
+        <span class="skill-item">Databricks</span>
+        <span class="skill-item">PySpark</span>
+        <span class="skill-item">SSIS</span>
+        <span class="skill-item">SSMS</span>
+        <span class="skill-item">ETL/ELT Pipelines</span>
+        <span class="skill-item">Data Warehousing</span>
+        <span class="skill-item">Data Modeling</span>
+        <span class="skill-item">Git & GitHub</span>
+        <span class="skill-item">Machine Learning</span>
+        <span class="skill-item">Pandas/NumPy</span>
+        <span class="skill-item">Airflow</span>
+        <span class="skill-item">DBT</span>
+    </div>
+</section>
+
+<section class="services" id="services">
+    <h2 class="heading">What I <span class="gradient-text">Offer</span></h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <i class="fas fa-network-wired"></i>
+            <h3>Data Engineering</h3>
+            <ul>
+                <li>ETL/ELT Pipeline Development</li>
+                <li>Data Warehouse Design</li>
+                <li>Cloud Data Integration (Azure)</li>
+                <li>Data Modeling (Star/Snowflake)</li>
+                <li>Process Automation & Ingestion</li>
+            </ul>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>BI & Analytics</h3>
+            <ul>
+                <li>Interactive Dashboards (Power BI/Tableau)</li>
+                <li>Data Storytelling & Visualization</li>
+                <li>KPI Tracking & Metrics</li>
+                <li>Exploratory Data Analysis (EDA)</li>
+                <li>Business Intelligence Reporting</li>
+            </ul>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-cloud-arrow-up"></i>
+            <h3>Cloud Solutions</h3>
+            <ul>
+                <li>Azure Data Factory Pipelines</li>
+                <li>Synapse Analytics & Spark</li>
+                <li>Data Lake & Blob Storage</li>
+                <li>RBAC & Key Vault Security</li>
+                <li>Bronze-Silver-Gold Architecture</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="projects" id="projects">
+    <h2 class="heading">Latest <span class="gradient-text">Projects</span></h2>
+    <div class="swiper project-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="project-info">
+                    <h4>CRM Data Engineering (Azure)</h4>
+                    <p>End-to-end cloud data solution for CRM analytics. Built ETL pipeline using SSIS, Azure Data Lake, PySpark with Bronze→Silver→Gold layers. Automated workflows with ADF & Synapse. Achieved 93% sales prediction accuracy using ML.</p>
+                    <div class="project-tech"><span>Azure</span><span>PySpark</span><span>ADF</span><span>Synapse</span><span>Power BI</span><span>ML</span></div>
+                    <a href="https://github.com/Ez-114/CRM-Data_Engineering" class="btn-outline btn" target="_blank"><i class="fab fa-github"></i> View Code</a>
+                </div>
+                <div class="project-img"><img src="CRM.jpg" alt="CRM Project"></div>
             </div>
-            <a href="#projects" class="btn">View My Work</a>
+            <div class="swiper-slide">
+                <div class="project-info">
+                    <h4>Adidas Sales Pipeline</h4>
+                    <p>Complete ETL & BI pipeline combining Python automation and Data Warehouse modeling. Extracted CSV/Excel data, loaded via SSIS to DW, and built Power BI dashboards for sales and retailer performance tracking.</p>
+                    <div class="project-tech"><span>Python</span><span>SSIS</span><span>SQL Server</span><span>Power BI</span><span>DAX</span></div>
+                    <a href="https://github.com/Yasserghonem/Adidas_Sales_Project" class="btn-outline btn" target="_blank"><i class="fab fa-github"></i> View Code</a>
+                </div>
+                <div class="project-img"><img src="Retailer_Performance.png" alt="Adidas Sales Project"></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="project-info">
+                    <h4>Suicide Risk Prediction</h4>
+                    <p>ML and BI solution for early suicide-risk detection. Cleaned 1,099 records, handled class imbalance, trained multiple models achieving ~91% accuracy with Random Forest and Neural Networks.</p>
+                    <div class="project-tech"><span>Python</span><span>Scikit-Learn</span><span>TensorFlow</span><span>Power BI</span><span>EDA</span></div>
+                    <a href="https://github.com/Yasserghonem/Suicide-Analytics-Dashboard" class="btn-outline btn" target="_blank"><i class="fab fa-github"></i> View Code</a>
+                </div>
+                <div class="project-img"><img src="Suicide.png" alt="Suicide Analysis"></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="project-info">
+                    <h4>HR Attrition Dashboard</h4>
+                    <p>Interactive Power BI dashboard analyzing employee attrition, retention rates, and demographic data for workforce planning and strategic HR decisions.</p>
+                    <div class="project-tech"><span>Power BI</span><span>DAX</span><span>Data Modeling</span></div>
+                    <a href="https://github.com/Yasserghonem/HR-Dashboard" class="btn-outline btn" target="_blank"><i class="fab fa-github"></i> View Code</a>
+                </div>
+                <div class="project-img"><img src="HR.png" alt="HR Project"></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="project-info">
+                    <h4>Real-Estate Trends Analysis</h4>
+                    <p>Web scraping property data, EDA, and visualization to identify pricing patterns and market fluctuations. Complete Python-based analytics pipeline.</p>
+                    <div class="project-tech"><span>Python</span><span>Web Scraping</span><span>Pandas</span><span>EDA</span></div>
+                    <a href="https://github.com/Yasserghonem/CodeAlpha_Real-Estate-Trends" class="btn-outline btn" target="_blank"><i class="fab fa-github"></i> View Code</a>
+                </div>
+                <div class="project-img"><img src="Investment Page.png" alt="Real Estate"></div>
+            </div>
         </div>
-    </section>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>
 
-    <!-- About Me Section -->
-    <section class="about" id="about">
-        <div class="about-img">
-            <!-- تأكد من وضع مسار صورتك الصحيح هنا -->
-            <img src="6028494849645939796.jpg" alt="Yasser Ghonem">
-        </div>
-        <div class="about-content">
-            <h2 class="heading">About <span class="gradient-text">Me</span></h2>
-            <h3>Data Engineer & BI Developer</h3>
-            <p>I’m a passionate and detail-oriented Data Engineer with strong experience across the full data lifecycle. I excel at building robust ETL pipelines, designing efficient data warehouses, and crafting insightful dashboards that empower data-driven decisions.</p>
-            <p>My expertise lies in using technologies like SQL, Python, Azure Cloud Services, and Power BI to transform complex datasets into actionable business intelligence. My goal is to bridge the gap between raw data and strategic outcomes, helping teams unlock their full potential.</p>
-        </div>
-    </section>
+<footer class="footer" id="contact">
+    <h2>Let's build something <span class="gradient-text">great together!</span></h2>
+    <p>Available for freelance projects and full-time opportunities.</p>
+    <div class="contact-info">
+        <a href="tel:+201275379078"><i class="fas fa-phone"></i> +20 127 537 9078</a>
+        <a href="mailto:YasserGhonem56@gmail.com"><i class="fas fa-envelope"></i> YasserGhonem56@gmail.com</a>
+        <a href="https://www.linkedin.com/in/yasser-ghonem-3b7601262" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com/Yasserghonem" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+    </div>
+    <div class="copyright">
+        <p>© 2025 Yasser Ghonem. All rights reserved.</p>
+    </div>
+</footer>
 
-    <!-- Education Section -->
-    <section class="education" id="education">
-        <h2 class="heading"><span class="gradient-text">Education</span> & Certs</h2>
-        <div class="education-container">
-            <div class="education-box" data-tilt><i class="fa-solid fa-graduation-cap"></i><h3>Faculty of Business, BIS Dept.</h3><p>Grade: 3.73 / 4</p></div>
-            <div class="education-box" data-tilt><i class="fa-solid fa-cloud"></i><h3>Azure Data Engineer</h3><p>From: Ministry of Communication & IT</p></div>
-            <div class="education-box" data-tilt><i class="fa-solid fa-database"></i><h3>Assoc. & Inter. Data Engineer</h3><p>From: DataCamp</p></div>
-            <div class="education-box" data-tilt><i class="fa-solid fa-chart-line"></i><h3>Advanced Data Analytics</h3><p>From: NTI</p></div>
-            <div class="education-box" data-tilt><i class="fa-solid fa-chart-pie"></i><h3>Power BI Developer</h3><p>From: CodeAlpha</p></div>
-        </div>
-    </section>
+<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    // Mobile menu toggle
+    const menuIcon = document.getElementById('menu-icon');
+    const navbar = document.querySelector('.navbar');
     
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
-        <h2 class="heading">My <span class="gradient-text">Skills</span></h2>
-        <div class="skills-container">
-            <div class="skill-tag" data-tilt>SQL</div><div class="skill-tag" data-tilt>Python</div><div class="skill-tag" data-tilt>Power BI</div>
-            <div class="skill-tag" data-tilt>Azure Cloud</div><div class="skill-tag" data-tilt>ETL/ELT Pipelines</div>
-            <div class="skill-tag" data-tilt>Data Warehousing</div><div class="skill-tag" data-tilt>SSIS</div>
-            <div class="skill-tag" data-tilt>SSMS</div><div class="skill-tag" data-tilt>Tableau</div>
-            <div class="skill-tag" data-tilt>Data Modeling</div><div class="skill-tag" data-tilt>Machine Learning</div>
-            <div class="skill-tag" data-tilt>Excel</div><div class="skill-tag" data-tilt>Data Visualization</div>
-        </div>
-    </section>
-
-    <!-- Offered Services Section -->
-    <section class="services" id="services">
-        <h2 class="heading">Offered <span class="gradient-text">Services</span></h2>
-        <div class="services-container">
-            <div class="services-box" data-tilt>
-                <i class="fa-solid fa-network-wired"></i>
-                <h3>Data Engineering</h3>
-                <ul>
-                    <li>Building & Developing ETL/ELT Pipelines</li>
-                    <li>Data Warehouse Design & Implementation</li>
-                    <li>Cloud Data Integration (Azure)</li>
-                    <li>Data Modeling & Architecture</li>
-                    <li>Process Automation & Data Ingestion</li>
-                </ul>
-            </div>
-            <div class="services-box" data-tilt>
-                <i class="fa-solid fa-chart-column"></i>
-                <h3>Dashboards & BI</h3>
-                <ul>
-                    <li>Interactive Dashboard Design (Power BI & Tableau)</li>
-                    <li>Data Storytelling & Visualization</li>
-                    <li>Business Intelligence (BI) Reporting</li>
-                    <li>KPI Tracking and Performance Metrics</li>
-                    <li>Exploratory Data Analysis (EDA)</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <h2 class="heading">Latest <span class="gradient-text">Projects</span></h2>
-        
-        <div class="swiper project-slider">
-            <div class="swiper-wrapper">
-                <!-- Slide 1 -->
-                <div class="swiper-slide">
-                    <div class="project-info">
-                        <h4>CRM Data Engineering Project</h4>
-                        <p>Developed an end-to-end data engineering solution to analyze CRM data. This project involved building an ETL pipeline using Azure Data Factory, transforming data with SQL, and creating an interactive Power BI dashboard.</p>
-                        <a href="https://github.com/Ez-114/CRM-Data_Engineering" class="btn" target="_blank"><i class="fa-brands fa-github"></i> View Details</a>
-                    </div>
-                    <div class="project-img"><img src="CRM.jpg" alt="CRM Project"></div>
-                </div>
-
-                <!-- Slide 2 -->
-                <div class="swiper-slide">
-                    <div class="project-info">
-                        <h4>Soualy Internship Analysis</h4>
-                        <p>Analyzed business operations data to identify performance bottlenecks. Involved data extraction, cleaning with Python, and building a dashboard to visualize operational efficiency.</p>
-                        <a href="https://github.com/Yasserghonem/Soualy-Internship" class="btn" target="_blank"><i class="fa-brands fa-github"></i> View Details</a>
-                    </div>
-                    <div class="project-img"><img src="Soualy.jpg" alt="Soualy Internship Project"></div>
-                </div>
-                
-                <!-- Slide 3 -->
-                <div class="swiper-slide">
-                    <div class="project-info">
-                        <h4>Adidas Sales Pipeline</h4>
-                        <p>A complete end-to-end DE and BI project integrating Python, SSIS, and Power BI. Covers the full data pipeline — from extraction and cleaning to data warehousing and visualization.</p>
-                        <a href="https://github.com/Yasserghonem/Adidas_Sales_Project" class="btn" target="_blank"><i class="fa-brands fa-github"></i> View Details</a>
-                    </div>
-                    <div class="project-img"><img src="Retailer_Performance.png" alt="Adidas Sales Project"></div>
-                </div>
-
-                <!-- Slide 4 -->
-                <div class="swiper-slide">
-                    <div class="project-info">
-                        <h4>Real-Estate Trends</h4>
-                        <p>Visualizing real-estate market trends. Used Python for web scraping property data, performed EDA, and created visualizations to identify patterns in pricing and market fluctuations.</p>
-                        <a href="https://github.com/Yasserghonem/CodeAlpha_Real-Estate-Trends" class="btn" target="_blank"><i class="fa-brands fa-github"></i> View Details</a>
-                    </div>
-                    <div class="project-img"><img src="Investment Page.png" alt="Real-Estate Project"></div>
-                </div>
-                
-                <!-- Slide 5 -->
-                <div class="swiper-slide">
-                    <div class="project-info">
-                        <h4>HR Attrition Dashboard</h4>
-                        <p>Designed an interactive Power BI dashboard to analyze employee attrition, track retention rates, and visualize demographic data for better workforce planning.</p>
-                        <a href="https://github.com/Yasserghonem/HR-Dashboard" class="btn" target="_blank"><i class="fa-brands fa-github"></i> View Details</a>
-                    </div>
-                    <div class="project-img"><img src="HR.png" alt="HR Project"></div>
-                </div>
-
-                <!-- Slide 6 -->
-                <div class="swiper-slide">
-                    <div class="project-info">
-                        <h4>Global Suicide Analysis</h4>
-                        <p>A Tableau visualization project analyzing a sensitive dataset on global suicide rates to explore trends across different countries, age groups, and genders responsibly.</p>
-                        <a href="https://github.com/Yasserghonem/Suicide-Analytics-Dashboard" class="btn" target="_blank"><i class="fa-brands fa-github"></i> View Details</a>
-                    </div>
-                    <div class="project-img"><img src="Suicide.png" alt="Suicide Analysis Project"></div>
-                </div>
-            </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer" id="contact">
-        <div class="footer-content">
-            <h2 class="heading">Let's build something great <span class="gradient-text">together!</span></h2>
-            <p>Ready to turn your data into a valuable asset? I'm available for freelance projects and full-time opportunities.</p>
-            <div class="contact-info">
-                <div class="info-item"><i class="fa-solid fa-mobile-screen-button"></i><a href="tel:+201275379078">+20 127 537 9078</a></div>
-                <div class="info-item"><i class="fa-brands fa-linkedin"></i><a href="https://www.linkedin.com/in/yasser-ghonem-3b7601262" target="_blank">in/yasser-ghonem</a></div>
-                <div class="info-item"><i class="fa-brands fa-github"></i><a href="https://github.com/Yasserghonem" target="_blank">github.com/Yasserghonem</a></div>
-            </div>
-        </div>
-        <div class="footer-bottom"><p>Copyright &copy; 2024 by Yasser Ghonem | All Rights Reserved.</p></div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- Vanilla Tilt for 3D Cards -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
-
-    <script>
-        // Mobile Menu Toggle
-        let menuIcon = document.querySelector('#menu-icon');
-        let navbar = document.querySelector('.navbar');
-
+    if (menuIcon) {
         menuIcon.onclick = () => {
-            menuIcon.classList.toggle('fa-xmark');
             navbar.classList.toggle('active');
+            menuIcon.classList.toggle('fa-times');
         };
+    }
 
-        // Typing animation
-        var typed = new Typed('.multiple-text', {
-            strings: ['Data Engineer', 'BI Developer', 'Data Analyst'],
-            typeSpeed: 70, backSpeed: 70, backDelay: 1000, loop: true
+    // Typed.js - المؤشر هيكون في مكانه الطبيعي دلوقتي
+    const typed = new Typed('.multiple-text', {
+        strings: ['Data Engineer', 'BI Developer', 'Data Analyst', 'ETL Specialist'],
+        typeSpeed: 80,
+        backSpeed: 60,
+        backDelay: 1500,
+        startDelay: 500,
+        loop: true,
+        cursorChar: '|',
+        cursorBlinking: true
+    });
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.navbar a');
+    const header = document.querySelector('.header');
+
+    window.addEventListener('scroll', () => {
+        if (header) {
+            header.classList.toggle('sticky', window.scrollY > 50);
+        }
+        
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 200;
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
         });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
 
-        // Active link switching & Sticky header
-        let sections = document.querySelectorAll('section');
-        let navLinks = document.querySelectorAll('header nav a');
-        let header = document.querySelector('.header');
+    // Swiper
+    new Swiper('.project-slider', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        grabCursor: true,
+        autoplay: { delay: 5000, disableOnInteraction: false },
+        pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
+    });
 
-        window.onscroll = () => {
-            header.classList.toggle('sticky', window.scrollY > 100);
-            
-            // Remove Mobile menu on scroll
-            menuIcon.classList.remove('fa-xmark');
+    // Close mobile menu on link click
+    document.querySelectorAll('.navbar a').forEach(link => {
+        link.addEventListener('click', () => {
             navbar.classList.remove('active');
-
-            sections.forEach(sec => {
-                let top = window.scrollY;
-                let offset = sec.offsetTop - 150;
-                let height = sec.offsetHeight;
-                let id = sec.getAttribute('id');
-                if (top >= offset && top < offset + height) {
-                    navLinks.forEach(links => {
-                        links.classList.remove('active');
-                        document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
-                    });
-                }
-            });
-        };
-
-        // Scroll Reveal Animations
-        ScrollReveal({ reset: true, distance: '80px', duration: 2000, delay: 200 });
-        ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
-        ScrollReveal().reveal('.about-img, .services-container, .contact-info', { origin: 'bottom' });
-        ScrollReveal().reveal('.home-content h1, .about-content', { origin: 'left' });
-        ScrollReveal().reveal('.project-slider', { origin: 'bottom' });
-
-        // Initialize Swiper
-        var swiper = new Swiper(".project-slider", {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            grabCursor: true,
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
+            if (menuIcon) menuIcon.classList.remove('fa-times');
         });
-
-        // Initialize 3D Tilt Effect
-        VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-            max: 15,
-            speed: 400,
-            glare: true,
-            "max-glare": 0.2,
-        });
-    </script>
+    });
+</script>
 </body>
 </html>
