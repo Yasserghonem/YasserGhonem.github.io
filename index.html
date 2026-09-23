@@ -447,6 +447,11 @@
             line-height: 1.7;
         }
 
+        .project-info p strong {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
         .project-tech {
             display: flex;
             flex-wrap: wrap;
@@ -476,6 +481,24 @@
 
         .swiper-slide:hover .project-img img {
             transform: scale(1.05);
+        }
+
+        /* Dashboard iframe styling */
+        .dashboard-slide .dashboard-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .dashboard-slide .dashboard-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
         }
 
         .swiper-button-next, .swiper-button-prev {
@@ -571,6 +594,10 @@
             .swiper-slide { flex-direction: column-reverse; text-align: center; }
             .project-tech { justify-content: center; }
             .heading { font-size: 3rem; }
+            .dashboard-slide .dashboard-frame {
+                aspect-ratio: 4 / 3;
+                width: 100%;
+            }
         }
 
         @media (max-width: 480px) {
@@ -739,6 +766,66 @@
     <h2 class="heading">Latest <span class="gradient-text">Projects</span></h2>
     <div class="swiper project-slider">
         <div class="swiper-wrapper">
+
+            <!-- ===== Dashboard 1: Employee Performance & Accounts ===== -->
+            <div class="swiper-slide dashboard-slide">
+                <div class="project-info">
+                    <h4>Employee Performance & Accounts Dashboard</h4>
+                    <p>Real-time dashboard tracking employee performance KPIs and account metrics. <strong>Challenge:</strong> Scraping live data directly from the client's website to reflect up-to-the-minute performance and account status — requiring an automated refresh pipeline and dynamic data modeling.</p>
+                    <div class="project-tech">
+                        <span>Power BI</span>
+                        <span>Web Scraping</span>
+                        <span>Real-Time Data</span>
+                        <span>DAX</span>
+                        <span>KPI Tracking</span>
+                    </div>
+                    <a href="https://app.powerbi.com/view?r=eyJrIjoiYzgxMWEyMjQtZTRjYy00YjNmLTkxNjMtOWJjYTdkNzA0MzY2IiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9" class="btn-outline btn" target="_blank"><i class="fas fa-external-link-alt"></i> Open Full Dashboard</a>
+                </div>
+                <div class="project-img dashboard-frame">
+                    <iframe title="Analysis" data-src="https://app.powerbi.com/view?r=eyJrIjoiYzgxMWEyMjQtZTRjYy00YjNmLTkxNjMtOWJjYTdkNzA0MzY2IiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9" frameborder="0" allowFullScreen="true"></iframe>
+                </div>
+            </div>
+
+            <!-- ===== Dashboard 2: Sales + CRM + Media Buying ===== -->
+            <div class="swiper-slide dashboard-slide">
+                <div class="project-info">
+                    <h4>Unified Sales, CRM & Media Buying Dashboard</h4>
+                    <p>Integrated analytics bridging the sales system with the CRM, sales sheets, and media buying platforms (Meta & Google Ads). <strong>Challenge:</strong> Merging heterogeneous data sources — CRM records, spreadsheet data, and ad platform APIs — into a single unified model for full-funnel attribution and performance analysis.</p>
+                    <div class="project-tech">
+                        <span>Power BI</span>
+                        <span>CRM Integration</span>
+                        <span>Meta Ads</span>
+                        <span>Google Ads</span>
+                        <span>Data Modeling</span>
+                        <span>ETL</span>
+                    </div>
+                    <a href="https://app.powerbi.com/view?r=eyJrIjoiMjk5ZGJiNWMtMmE0My00ZjA1LWFmNTQtNGE0MTEzZmI5ZTNmIiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9" class="btn-outline btn" target="_blank"><i class="fas fa-external-link-alt"></i> Open Full Dashboard</a>
+                </div>
+                <div class="project-img dashboard-frame">
+                    <iframe title="WTD" data-src="https://app.powerbi.com/view?r=eyJrIjoiMjk5ZGJiNWMtMmE0My00ZjA1LWFmNTQtNGE0MTEzZmI5ZTNmIiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9" frameborder="0" allowFullScreen="true"></iframe>
+                </div>
+            </div>
+
+            <!-- ===== Dashboard 3: Call Center Performance ===== -->
+            <div class="swiper-slide dashboard-slide">
+                <div class="project-info">
+                    <h4>Call Center Performance & Segmentation</h4>
+                    <p>Comprehensive evaluation of call center agents — tracking call durations, minutes utilization, top-performer ranking, and agent segmentation. <strong>Challenge:</strong> Building an automated scoring model that ranks agents fairly and segments them by performance tier to drive data-backed coaching decisions.</p>
+                    <div class="project-tech">
+                        <span>Power BI</span>
+                        <span>DAX</span>
+                        <span>Segmentation</span>
+                        <span>Performance Scoring</span>
+                        <span>KPI Analysis</span>
+                    </div>
+                    <a href="https://app.powerbi.com/view?r=eyJrIjoiNzhhOWQ3ZTMtNTVjNC00NzZlLWI1NDAtMGRiMTliNTViZTcwIiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9" class="btn-outline btn" target="_blank"><i class="fas fa-external-link-alt"></i> Open Full Dashboard</a>
+                </div>
+                <div class="project-img dashboard-frame">
+                    <iframe title="Daily Performance Analysis" data-src="https://app.powerbi.com/view?r=eyJrIjoiNzhhOWQ3ZTMtNTVjNC00NzZlLWI1NDAtMGRiMTliNTViZTcwIiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9" frameborder="0" allowFullScreen="true"></iframe>
+                </div>
+            </div>
+
+            <!-- ===== Existing Project 1: CRM Data Engineering ===== -->
             <div class="swiper-slide">
                 <div class="project-info">
                     <h4>CRM Data Engineering (Azure)</h4>
@@ -748,6 +835,8 @@
                 </div>
                 <div class="project-img"><img src="CRM.jpg" alt="CRM Project"></div>
             </div>
+
+            <!-- ===== Existing Project 2: Adidas Sales ===== -->
             <div class="swiper-slide">
                 <div class="project-info">
                     <h4>Adidas Sales Pipeline</h4>
@@ -757,6 +846,8 @@
                 </div>
                 <div class="project-img"><img src="Retailer_Performance.png" alt="Adidas Sales Project"></div>
             </div>
+
+            <!-- ===== Existing Project 3: Suicide Risk ===== -->
             <div class="swiper-slide">
                 <div class="project-info">
                     <h4>Suicide Risk Prediction</h4>
@@ -766,6 +857,8 @@
                 </div>
                 <div class="project-img"><img src="Suicide.png" alt="Suicide Analysis"></div>
             </div>
+
+            <!-- ===== Existing Project 4: HR ===== -->
             <div class="swiper-slide">
                 <div class="project-info">
                     <h4>HR Attrition Dashboard</h4>
@@ -775,106 +868,11 @@
                 </div>
                 <div class="project-img"><img src="HR.png" alt="HR Project"></div>
             </div>
+
+            <!-- ===== Existing Project 5: Real Estate ===== -->
             <div class="swiper-slide">
                 <div class="project-info">
                     <h4>Real-Estate Trends Analysis</h4>
                     <p>Web scraping property data, EDA, and visualization to identify pricing patterns and market fluctuations. Complete Python-based analytics pipeline.</p>
                     <div class="project-tech"><span>Python</span><span>Web Scraping</span><span>Pandas</span><span>EDA</span></div>
-                    <a href="https://github.com/Yasserghonem/CodeAlpha_Real-Estate-Trends" class="btn-outline btn" target="_blank"><i class="fab fa-github"></i> View Code</a>
-                </div>
-                <div class="project-img"><img src="Investment Page.png" alt="Real Estate"></div>
-            </div>
-        </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-    </div>
-</section>
-
-<footer class="footer" id="contact">
-    <h2>Let's build something <span class="gradient-text">great together!</span></h2>
-    <p>Available for freelance projects and full-time opportunities.</p>
-    <div class="contact-info">
-        <a href="tel:+201275379078"><i class="fas fa-phone"></i> +20 127 537 9078</a>
-        <a href="mailto:YasserGhonem56@gmail.com"><i class="fas fa-envelope"></i> YasserGhonem56@gmail.com</a>
-        <a href="https://www.linkedin.com/in/yasser-ghonem-3b7601262" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        <a href="https://github.com/Yasserghonem" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-    </div>
-    <div class="copyright">
-        <p>© 2025 Yasser Ghonem. All rights reserved.</p>
-    </div>
-</footer>
-
-<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-    // Mobile menu toggle
-    const menuIcon = document.getElementById('menu-icon');
-    const navbar = document.querySelector('.navbar');
-    
-    if (menuIcon) {
-        menuIcon.onclick = () => {
-            navbar.classList.toggle('active');
-            menuIcon.classList.toggle('fa-times');
-        };
-    }
-
-    // Typed.js - المؤشر هيكون في مكانه الطبيعي دلوقتي
-    const typed = new Typed('.multiple-text', {
-        strings: ['Data Engineer', 'BI Developer', 'Data Analyst', 'ETL Specialist'],
-        typeSpeed: 80,
-        backSpeed: 60,
-        backDelay: 1500,
-        startDelay: 500,
-        loop: true,
-        cursorChar: '|',
-        cursorBlinking: true
-    });
-
-    // Active nav link on scroll
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.navbar a');
-    const header = document.querySelector('.header');
-
-    window.addEventListener('scroll', () => {
-        if (header) {
-            header.classList.toggle('sticky', window.scrollY > 50);
-        }
-        
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 200;
-            if (window.scrollY >= sectionTop) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
-    });
-
-    // Swiper
-    new Swiper('.project-slider', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        grabCursor: true,
-        autoplay: { delay: 5000, disableOnInteraction: false },
-        pagination: { el: '.swiper-pagination', clickable: true },
-        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
-    });
-
-    // Close mobile menu on link click
-    document.querySelectorAll('.navbar a').forEach(link => {
-        link.addEventListener('click', () => {
-            navbar.classList.remove('active');
-            if (menuIcon) menuIcon.classList.remove('fa-times');
-        });
-    });
-</script>
-</body>
-</html>
+                    <a href="https://github.com/Yasserghonem/CodeAlpha_Real-Estate-Trends" class="btn-outline btn" target="_blank"><i class="fab fa-g
