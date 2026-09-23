@@ -418,7 +418,8 @@
         }
 
         .project-slider {
-            padding: 2rem 0 5rem;
+            padding: 2rem 0 6rem;
+            position: relative;
         }
 
         .swiper-slide {
@@ -429,10 +430,13 @@
             border-radius: 20px;
             padding: 3rem;
             border: 1px solid var(--border-color);
+            height: auto;
+            box-sizing: border-box;
         }
 
         .project-info {
             flex: 1;
+            min-width: 0;
         }
 
         .project-info h4 {
@@ -469,6 +473,7 @@
 
         .project-img {
             flex: 1;
+            min-width: 0;
             border-radius: 16px;
             overflow: hidden;
         }
@@ -477,6 +482,7 @@
             width: 100%;
             height: auto;
             transition: 0.5s;
+            display: block;
         }
 
         .swiper-slide:hover .project-img img {
@@ -501,16 +507,48 @@
             display: block;
         }
 
-        .swiper-button-next, .swiper-button-prev {
-            color: var(--accent-blue);
+        /* ===== Swiper Controls (raised above iframes) ===== */
+        .project-slider .swiper-button-next,
+        .project-slider .swiper-button-prev {
+            color: #fff;
+            background: rgba(59,130,246,0.9);
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            z-index: 50;
+            transition: 0.3s;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
         }
 
-        .swiper-pagination-bullet {
+        .project-slider .swiper-button-next::after,
+        .project-slider .swiper-button-prev::after {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .project-slider .swiper-button-next:hover,
+        .project-slider .swiper-button-prev:hover {
+            background: var(--accent-cyan);
+            transform: scale(1.1);
+        }
+
+        .project-slider .swiper-pagination {
+            bottom: 1rem !important;
+            z-index: 50;
+        }
+
+        .project-slider .swiper-pagination-bullet {
             background: var(--text-secondary);
+            opacity: 0.6;
+            width: 10px;
+            height: 10px;
         }
 
-        .swiper-pagination-bullet-active {
+        .project-slider .swiper-pagination-bullet-active {
             background: var(--accent-blue);
+            opacity: 1;
+            width: 28px;
+            border-radius: 6px;
         }
 
         /* Footer */
@@ -764,7 +802,7 @@
 
 <section class="projects" id="projects">
     <h2 class="heading">Latest <span class="gradient-text">Projects</span></h2>
-    <div class="swiper project-slider">
+    <div class="swiper project-slider" id="projectsSwiper">
         <div class="swiper-wrapper">
 
             <!-- ===== Dashboard 1: Employee Performance & Accounts ===== -->
@@ -875,4 +913,153 @@
                     <h4>Real-Estate Trends Analysis</h4>
                     <p>Web scraping property data, EDA, and visualization to identify pricing patterns and market fluctuations. Complete Python-based analytics pipeline.</p>
                     <div class="project-tech"><span>Python</span><span>Web Scraping</span><span>Pandas</span><span>EDA</span></div>
-                    <a href="https://github.com/Yasserghonem/CodeAlpha_Real-Estate-Trends" class="btn-outline btn" target="_blank"><i class="fab fa-g
+                    <a href="https://github.com/Yasserghonem/CodeAlpha_Real-Estate-Trends" class="btn-outline btn" target="_blank"><i class="fab fa-github"></i> View Code</a>
+                </div>
+                <div class="project-img"><img src="Investment Page.png" alt="Real Estate"></div>
+            </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>
+
+<footer class="footer" id="contact">
+    <h2>Let's build something <span class="gradient-text">great together!</span></h2>
+    <p>Available for freelance projects and full-time opportunities.</p>
+    <div class="contact-info">
+        <a href="tel:+201275379078"><i class="fas fa-phone"></i> +20 127 537 9078</a>
+        <a href="mailto:YasserGhonem56@gmail.com"><i class="fas fa-envelope"></i> YasserGhonem56@gmail.com</a>
+        <a href="https://www.linkedin.com/in/yasser-ghonem-3b7601262" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com/Yasserghonem" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+    </div>
+    <div class="copyright">
+        <p>© 2025 Yasser Ghonem. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    // Mobile menu toggle
+    const menuIcon = document.getElementById('menu-icon');
+    const navbar = document.querySelector('.navbar');
+    
+    if (menuIcon) {
+        menuIcon.onclick = () => {
+            navbar.classList.toggle('active');
+            menuIcon.classList.toggle('fa-times');
+        };
+    }
+
+    // Typed.js
+    const typed = new Typed('.multiple-text', {
+        strings: ['Data Engineer', 'BI Developer', 'Data Analyst', 'ETL Specialist'],
+        typeSpeed: 80,
+        backSpeed: 60,
+        backDelay: 1500,
+        startDelay: 500,
+        loop: true,
+        cursorChar: '|',
+        cursorBlinking: true
+    });
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.navbar a');
+    const header = document.querySelector('.header');
+
+    window.addEventListener('scroll', () => {
+        if (header) {
+            header.classList.toggle('sticky', window.scrollY > 50);
+        }
+        
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 200;
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // ===== Swiper Initialization =====
+    const projectsSwiper = new Swiper('#projectsSwiper', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        grabCursor: true,
+        speed: 600,
+        observer: true,
+        observeParents: true,
+        watchOverflow: true,
+        autoplay: {
+            delay: 8000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+        },
+        on: {
+            init: function () {
+                loadVisibleIframes(this);
+            },
+            slideChangeTransitionStart: function () {
+                loadVisibleIframes(this);
+            }
+        }
+    });
+
+    // Lazy-load iframes only for the active slide
+    function loadVisibleIframes(swiper) {
+        const activeSlide = swiper.slides[swiper.activeIndex];
+        if (!activeSlide) return;
+        activeSlide.querySelectorAll('iframe[data-src]').forEach(iframe => {
+            iframe.src = iframe.getAttribute('data-src');
+            iframe.removeAttribute('data-src');
+        });
+    }
+
+    // ===== مهم: منع الـ iframe من سرقة الـ scroll والـ drag =====
+    document.querySelectorAll('.dashboard-frame').forEach(frame => {
+        const iframe = frame.querySelector('iframe');
+        if (!iframe) return;
+
+        // اقفل تفاعل الـ iframe في البداية
+        iframe.style.pointerEvents = 'none';
+
+        // لما المستخدم يدوس على الفريم، فعّل التفاعل
+        frame.addEventListener('click', () => {
+            iframe.style.pointerEvents = 'auto';
+        });
+
+        // لما الماوس يخرج، اقفل التفاعل تاني عشان الـ swiper يرجع يشتغل
+        frame.addEventListener('mouseleave', () => {
+            iframe.style.pointerEvents = 'none';
+        });
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.navbar a').forEach(link => {
+        link.addEventListener('click', () => {
+            navbar.classList.remove('active');
+            if (menuIcon) menuIcon.classList.remove('fa-times');
+        });
+    });
+</script>
+</body>
+</html>
