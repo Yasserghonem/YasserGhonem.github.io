@@ -418,7 +418,8 @@
         }
 
         .project-slider {
-            padding: 2rem 0 5rem;
+            padding: 2rem 0 6rem;
+            position: relative;
         }
 
         .swiper-slide {
@@ -429,10 +430,13 @@
             border-radius: 20px;
             padding: 3rem;
             border: 1px solid var(--border-color);
+            height: auto;
+            box-sizing: border-box;
         }
 
         .project-info {
             flex: 1;
+            min-width: 0;
         }
 
         .project-info h4 {
@@ -445,6 +449,11 @@
             color: var(--text-secondary);
             margin-bottom: 2rem;
             line-height: 1.7;
+        }
+
+        .project-info p strong {
+            color: var(--accent-cyan);
+            font-weight: 600;
         }
 
         .project-tech {
@@ -464,6 +473,7 @@
 
         .project-img {
             flex: 1;
+            min-width: 0;
             border-radius: 16px;
             overflow: hidden;
         }
@@ -472,22 +482,73 @@
             width: 100%;
             height: auto;
             transition: 0.5s;
+            display: block;
         }
 
         .swiper-slide:hover .project-img img {
             transform: scale(1.05);
         }
 
-        .swiper-button-next, .swiper-button-prev {
-            color: var(--accent-blue);
+        /* Dashboard iframe styling */
+        .dashboard-slide .dashboard-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
         }
 
-        .swiper-pagination-bullet {
+        .dashboard-slide .dashboard-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        /* ===== Swiper Controls (raised above iframes) ===== */
+        .project-slider .swiper-button-next,
+        .project-slider .swiper-button-prev {
+            color: #fff;
+            background: rgba(59,130,246,0.9);
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            z-index: 50;
+            transition: 0.3s;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+        }
+
+        .project-slider .swiper-button-next::after,
+        .project-slider .swiper-button-prev::after {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .project-slider .swiper-button-next:hover,
+        .project-slider .swiper-button-prev:hover {
+            background: var(--accent-cyan);
+            transform: scale(1.1);
+        }
+
+        .project-slider .swiper-pagination {
+            bottom: 1rem !important;
+            z-index: 50;
+        }
+
+        .project-slider .swiper-pagination-bullet {
             background: var(--text-secondary);
+            opacity: 0.6;
+            width: 10px;
+            height: 10px;
         }
 
-        .swiper-pagination-bullet-active {
+        .project-slider .swiper-pagination-bullet-active {
             background: var(--accent-blue);
+            opacity: 1;
+            width: 28px;
+            border-radius: 6px;
         }
 
         /* Footer */
@@ -571,6 +632,10 @@
             .swiper-slide { flex-direction: column-reverse; text-align: center; }
             .project-tech { justify-content: center; }
             .heading { font-size: 3rem; }
+            .dashboard-slide .dashboard-frame {
+                aspect-ratio: 4 / 3;
+                width: 100%;
+            }
         }
 
         @media (max-width: 480px) {
@@ -737,8 +802,68 @@
 
 <section class="projects" id="projects">
     <h2 class="heading">Latest <span class="gradient-text">Projects</span></h2>
-    <div class="swiper project-slider">
+    <div class="swiper project-slider" id="projectsSwiper">
         <div class="swiper-wrapper">
+
+            <!-- ===== Dashboard 1: Employee Performance & Accounts ===== -->
+            <div class="swiper-slide dashboard-slide">
+                <div class="project-info">
+                    <h4>Employee Performance & Accounts Dashboard</h4>
+                    <p>Real-time dashboard tracking employee performance KPIs and account metrics. <strong>Challenge:</strong> Scraping live data directly from the client's website to reflect up-to-the-minute performance and account status — requiring an automated refresh pipeline and dynamic data modeling.</p>
+                    <div class="project-tech">
+                        <span>Power BI</span>
+                        <span>Web Scraping</span>
+                        <span>Real-Time Data</span>
+                        <span>DAX</span>
+                        <span>KPI Tracking</span>
+                    </div>
+                    <a href="https://app.powerbi.com/view?r=eyJrIjoiYzgxMWEyMjQtZTRjYy00YjNmLTkxNjMtOWJjYTdkNzA0MzY2IiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9" class="btn-outline btn" target="_blank"><i class="fas fa-external-link-alt"></i> Open Full Dashboard</a>
+                </div>
+                <div class="project-img dashboard-frame">
+                    <iframe title="Analysis" data-src="https://app.powerbi.com/view?r=eyJrIjoiYzgxMWEyMjQtZTRjYy00YjNmLTkxNjMtOWJjYTdkNzA0MzY2IiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9" frameborder="0" allowFullScreen="true"></iframe>
+                </div>
+            </div>
+
+            <!-- ===== Dashboard 2: Sales + CRM + Media Buying ===== -->
+            <div class="swiper-slide dashboard-slide">
+                <div class="project-info">
+                    <h4>Unified Sales, CRM & Media Buying Dashboard</h4>
+                    <p>Integrated analytics bridging the sales system with the CRM, sales sheets, and media buying platforms (Meta & Google Ads). <strong>Challenge:</strong> Merging heterogeneous data sources — CRM records, spreadsheet data, and ad platform APIs — into a single unified model for full-funnel attribution and performance analysis.</p>
+                    <div class="project-tech">
+                        <span>Power BI</span>
+                        <span>CRM Integration</span>
+                        <span>Meta Ads</span>
+                        <span>Google Ads</span>
+                        <span>Data Modeling</span>
+                        <span>ETL</span>
+                    </div>
+                    <a href="https://app.powerbi.com/view?r=eyJrIjoiMjk5ZGJiNWMtMmE0My00ZjA1LWFmNTQtNGE0MTEzZmI5ZTNmIiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9" class="btn-outline btn" target="_blank"><i class="fas fa-external-link-alt"></i> Open Full Dashboard</a>
+                </div>
+                <div class="project-img dashboard-frame">
+                    <iframe title="WTD" data-src="https://app.powerbi.com/view?r=eyJrIjoiMjk5ZGJiNWMtMmE0My00ZjA1LWFmNTQtNGE0MTEzZmI5ZTNmIiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9" frameborder="0" allowFullScreen="true"></iframe>
+                </div>
+            </div>
+
+            <!-- ===== Dashboard 3: Call Center Performance ===== -->
+            <div class="swiper-slide dashboard-slide">
+                <div class="project-info">
+                    <h4>Call Center Performance & Segmentation</h4>
+                    <p>Comprehensive evaluation of call center agents — tracking call durations, minutes utilization, top-performer ranking, and agent segmentation. <strong>Challenge:</strong> Building an automated scoring model that ranks agents fairly and segments them by performance tier to drive data-backed coaching decisions.</p>
+                    <div class="project-tech">
+                        <span>Power BI</span>
+                        <span>DAX</span>
+                        <span>Segmentation</span>
+                        <span>Performance Scoring</span>
+                        <span>KPI Analysis</span>
+                    </div>
+                    <a href="https://app.powerbi.com/view?r=eyJrIjoiNzhhOWQ3ZTMtNTVjNC00NzZlLWI1NDAtMGRiMTliNTViZTcwIiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9" class="btn-outline btn" target="_blank"><i class="fas fa-external-link-alt"></i> Open Full Dashboard</a>
+                </div>
+                <div class="project-img dashboard-frame">
+                    <iframe title="Daily Performance Analysis" data-src="https://app.powerbi.com/view?r=eyJrIjoiNzhhOWQ3ZTMtNTVjNC00NzZlLWI1NDAtMGRiMTliNTViZTcwIiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9" frameborder="0" allowFullScreen="true"></iframe>
+                </div>
+            </div>
+
+            <!-- ===== Existing Project 1: CRM Data Engineering ===== -->
             <div class="swiper-slide">
                 <div class="project-info">
                     <h4>CRM Data Engineering (Azure)</h4>
@@ -748,6 +873,8 @@
                 </div>
                 <div class="project-img"><img src="CRM.jpg" alt="CRM Project"></div>
             </div>
+
+            <!-- ===== Existing Project 2: Adidas Sales ===== -->
             <div class="swiper-slide">
                 <div class="project-info">
                     <h4>Adidas Sales Pipeline</h4>
@@ -757,6 +884,8 @@
                 </div>
                 <div class="project-img"><img src="Retailer_Performance.png" alt="Adidas Sales Project"></div>
             </div>
+
+            <!-- ===== Existing Project 3: Suicide Risk ===== -->
             <div class="swiper-slide">
                 <div class="project-info">
                     <h4>Suicide Risk Prediction</h4>
@@ -766,6 +895,8 @@
                 </div>
                 <div class="project-img"><img src="Suicide.png" alt="Suicide Analysis"></div>
             </div>
+
+            <!-- ===== Existing Project 4: HR ===== -->
             <div class="swiper-slide">
                 <div class="project-info">
                     <h4>HR Attrition Dashboard</h4>
@@ -775,6 +906,8 @@
                 </div>
                 <div class="project-img"><img src="HR.png" alt="HR Project"></div>
             </div>
+
+            <!-- ===== Existing Project 5: Real Estate ===== -->
             <div class="swiper-slide">
                 <div class="project-info">
                     <h4>Real-Estate Trends Analysis</h4>
@@ -784,6 +917,7 @@
                 </div>
                 <div class="project-img"><img src="Investment Page.png" alt="Real Estate"></div>
             </div>
+
         </div>
         <div class="swiper-pagination"></div>
         <div class="swiper-button-next"></div>
@@ -819,7 +953,7 @@
         };
     }
 
-    // Typed.js - المؤشر هيكون في مكانه الطبيعي دلوقتي
+    // Typed.js
     const typed = new Typed('.multiple-text', {
         strings: ['Data Engineer', 'BI Developer', 'Data Analyst', 'ETL Specialist'],
         typeSpeed: 80,
@@ -857,15 +991,66 @@
         });
     });
 
-    // Swiper
-    new Swiper('.project-slider', {
+    // ===== Swiper Initialization =====
+    const projectsSwiper = new Swiper('#projectsSwiper', {
         slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
         grabCursor: true,
-        autoplay: { delay: 5000, disableOnInteraction: false },
-        pagination: { el: '.swiper-pagination', clickable: true },
-        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
+        speed: 600,
+        observer: true,
+        observeParents: true,
+        watchOverflow: true,
+        autoplay: {
+            delay: 8000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+        },
+        on: {
+            init: function () {
+                loadVisibleIframes(this);
+            },
+            slideChangeTransitionStart: function () {
+                loadVisibleIframes(this);
+            }
+        }
+    });
+
+    // Lazy-load iframes only for the active slide
+    function loadVisibleIframes(swiper) {
+        const activeSlide = swiper.slides[swiper.activeIndex];
+        if (!activeSlide) return;
+        activeSlide.querySelectorAll('iframe[data-src]').forEach(iframe => {
+            iframe.src = iframe.getAttribute('data-src');
+            iframe.removeAttribute('data-src');
+        });
+    }
+
+    // ===== مهم: منع الـ iframe من سرقة الـ scroll والـ drag =====
+    document.querySelectorAll('.dashboard-frame').forEach(frame => {
+        const iframe = frame.querySelector('iframe');
+        if (!iframe) return;
+
+        // اقفل تفاعل الـ iframe في البداية
+        iframe.style.pointerEvents = 'none';
+
+        // لما المستخدم يدوس على الفريم، فعّل التفاعل
+        frame.addEventListener('click', () => {
+            iframe.style.pointerEvents = 'auto';
+        });
+
+        // لما الماوس يخرج، اقفل التفاعل تاني عشان الـ swiper يرجع يشتغل
+        frame.addEventListener('mouseleave', () => {
+            iframe.style.pointerEvents = 'none';
+        });
     });
 
     // Close mobile menu on link click
